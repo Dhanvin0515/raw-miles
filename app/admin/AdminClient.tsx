@@ -187,7 +187,7 @@ export default function AdminClient({
         <div style={{ padding: '0 1rem 1.5rem', display: 'flex', alignItems: 'center', justifyContent: sidebarOpen ? 'space-between' : 'center' }}>
           {sidebarOpen && (
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span style={{ color: 'white', fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: '1rem', whiteSpace: 'nowrap' }}>
+              <span style={{ color: 'white', fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '1rem', whiteSpace: 'nowrap' }}>
                 Admin Panel
               </span>
             </div>
@@ -234,12 +234,12 @@ export default function AdminClient({
       <main style={{ flex: 1, overflowX: 'auto', padding: '2rem' }}>
         {activeSection === 'dashboard' && (
           <>
-            <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.75rem', color: 'var(--dark)', marginBottom: '0.25rem' }}>Dashboard Overview</h1>
+            <h1 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.75rem', color: 'var(--dark)', marginBottom: '0.25rem' }}>Dashboard Overview</h1>
             
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.25rem', marginBottom: '2.5rem', marginTop: '1rem' }}>
               {initialStats.map(({ label, value }) => (
                 <div key={label} style={{ background: 'var(--white)', borderRadius: 16, padding: '1.5rem', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
-                  <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--dark)', lineHeight: 1, marginBottom: '0.25rem', fontFamily: "'Playfair Display', serif" }}>{value}</div>
+                  <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--dark)', lineHeight: 1, marginBottom: '0.25rem', fontFamily: "'Poppins', sans-serif" }}>{value}</div>
                   <div style={{ fontSize: '0.8rem', color: 'var(--gray)' }}>{label}</div>
                 </div>
               ))}
@@ -247,7 +247,7 @@ export default function AdminClient({
 
             <div style={{ background: 'var(--white)', borderRadius: 16, padding: '1.5rem', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem' }}>
-                <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.2rem', color: 'var(--dark)' }}>Recent Bookings</h2>
+                <h2 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.2rem', color: 'var(--dark)' }}>Recent Bookings</h2>
                 <button onClick={() => setActiveSection('bookings')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--primary)', fontSize: '0.85rem', fontWeight: 600 }}>
                   View All →
                 </button>
@@ -279,7 +279,7 @@ export default function AdminClient({
         {activeSection === 'packages' && (
           <>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-              <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.75rem', color: 'var(--dark)' }}>Package Management</h1>
+              <h1 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.75rem', color: 'var(--dark)' }}>Package Management</h1>
               <button 
                 className="btn-primary" 
                 style={{ padding: '0.6rem 1.25rem', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
@@ -352,7 +352,7 @@ export default function AdminClient({
 
         {activeSection === 'bookings' && (
           <>
-            <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.75rem', color: 'var(--dark)', marginBottom: '2rem' }}>Booking Management</h1>
+            <h1 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.75rem', color: 'var(--dark)', marginBottom: '2rem' }}>Booking Management</h1>
             <div style={{ background: 'var(--white)', borderRadius: 16, padding: '1.5rem', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', overflowX: 'auto' }}>
               <table className="table">
                 <thead>
@@ -468,7 +468,7 @@ export default function AdminClient({
         {activeSection === 'coupons' && (
           <>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-              <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.75rem', color: 'var(--dark)' }}>Coupon Management</h1>
+              <h1 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.75rem', color: 'var(--dark)' }}>Coupon Management</h1>
               <button 
                 onClick={() => { setEditingCoupon(null); setIsCouponModalOpen(true); }}
                 className="btn-primary" 
@@ -510,10 +510,10 @@ export default function AdminClient({
 
         {activeSection === 'settings' && (
           <>
-            <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.75rem', color: 'var(--dark)', marginBottom: '2rem' }}>Site Settings</h1>
+            <h1 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.75rem', color: 'var(--dark)', marginBottom: '2rem' }}>Site Settings</h1>
             
             <div style={{ background: 'var(--white)', borderRadius: 16, padding: '1.5rem', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', marginBottom: '2rem' }}>
-              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.2rem', color: 'var(--dark)', marginBottom: '1rem' }}>Homepage Hero Images</h2>
+              <h2 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.2rem', color: 'var(--dark)', marginBottom: '1rem' }}>Homepage Hero Images</h2>
               <p style={{ color: 'var(--gray)', fontSize: '0.85rem', marginBottom: '1.5rem' }}>Add image URLs to be displayed in the sliding carousel on the homepage.</p>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1.5rem' }}>
@@ -549,7 +549,7 @@ export default function AdminClient({
 
               <div style={{ borderTop: '1px solid var(--cream-dark)', margin: '1.5rem 0' }}></div>
 
-              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.2rem', color: 'var(--dark)', marginBottom: '1rem' }}>Past Trip Images</h2>
+              <h2 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.2rem', color: 'var(--dark)', marginBottom: '1rem' }}>Past Trip Images</h2>
               <p style={{ color: 'var(--gray)', fontSize: '0.85rem', marginBottom: '1.5rem' }}>Add image URLs to be displayed in the Past Trips gallery on the homepage.</p>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1.5rem' }}>
@@ -585,7 +585,7 @@ export default function AdminClient({
 
               <div style={{ borderTop: '1px solid var(--cream-dark)', margin: '1.5rem 0' }}></div>
 
-              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.2rem', color: 'var(--dark)', marginBottom: '1rem' }}>UPI QR Codes & IDs</h2>
+              <h2 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.2rem', color: 'var(--dark)', marginBottom: '1rem' }}>UPI QR Codes & IDs</h2>
               <p style={{ color: 'var(--gray)', fontSize: '0.85rem', marginBottom: '1.5rem' }}>Upload the 2 UPI QR codes and enter the corresponding UPI IDs. The system will alternate between them every 10 payments.</p>
               
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '1.5rem' }}>

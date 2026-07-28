@@ -53,7 +53,7 @@ function SignupForm() {
           <div style={{ width: 72, height: 72, borderRadius: '50%', background: 'linear-gradient(135deg, #10B981, #059669)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem' }}>
             <CheckCircle size={36} style={{ color: 'white' }} />
           </div>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.6rem', color: 'var(--dark)', marginBottom: '0.75rem' }}>Account created</h2>
+          <h2 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.6rem', color: 'var(--dark)', marginBottom: '0.75rem' }}>Account created</h2>
           <p style={{ color: 'var(--gray)', lineHeight: 1.7, marginBottom: '1.5rem' }}>
             Your account is ready for login. Use <strong>{form.email}</strong> to sign in and start booking.
           </p>
@@ -80,9 +80,9 @@ function SignupForm() {
         <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
             <Image src="/logo.png" alt="Raw Miles" width={44} height={44} style={{ borderRadius: '50%' }} />
-            <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: '1.3rem', color: 'var(--primary)' }}>Raw Miles</span>
+            <span style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '1.3rem', color: 'var(--primary)' }}>Raw Miles</span>
           </div>
-          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.6rem', color: 'var(--dark)', marginBottom: '0.25rem' }}>Create your account</h1>
+          <h1 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.6rem', color: 'var(--dark)', marginBottom: '0.25rem' }}>Create your account</h1>
           <p style={{ color: 'var(--gray)', fontSize: '0.875rem' }}>Start exploring curated travel experiences</p>
         </div>
 

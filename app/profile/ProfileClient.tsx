@@ -48,7 +48,7 @@ export default function ProfileClient({ user, profile }: { user: any, profile: a
   return (
     <div style={{ minHeight: '100vh', background: 'var(--cream)', paddingTop: '5rem', paddingBottom: '5rem' }}>
       <div className="container" style={{ maxWidth: 600 }}>
-        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '2.5rem', color: 'var(--dark)', marginBottom: '1.5rem', textAlign: 'center' }}>
+        <h1 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '2.5rem', color: 'var(--dark)', marginBottom: '1.5rem', textAlign: 'center' }}>
           Your Profile
         </h1>
         

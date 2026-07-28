@@ -16,7 +16,7 @@ export default function HistoryClient({ bookings }: { bookings: any[] }) {
           border: '1px solid var(--cream-dark)',
         }}>
           <div style={{ fontSize: '3.5rem', marginBottom: '1rem' }}>🎫</div>
-          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.8rem', color: 'var(--dark)', marginBottom: '0.5rem' }}>
+          <h1 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.8rem', color: 'var(--dark)', marginBottom: '0.5rem' }}>
             Your Bookings Moved!
           </h1>
           <p style={{ color: 'var(--gray)', marginBottom: '2rem', lineHeight: 1.6 }}>

@@ -175,7 +175,7 @@ function CheckoutContent() {
             <div style={{ width: 96, height: 96, borderRadius: '50%', background: 'linear-gradient(135deg, #10B981, #059669)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 1.5rem', boxShadow: '0 8px 32px rgba(16,185,129,0.4)' }}>
               <CheckCircle size={48} style={{ color: 'white' }} />
             </div>
-            <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '2rem', fontWeight: 700, color: 'var(--dark)', marginBottom: '0.75rem' }}>
+            <h1 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '2rem', fontWeight: 700, color: 'var(--dark)', marginBottom: '0.75rem' }}>
               Booking Submitted! 🎉
             </h1>
             <p style={{ color: 'var(--gray)', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '2rem' }}>
@@ -222,7 +222,7 @@ function CheckoutContent() {
           <ArrowLeft size={16} /> Back to package
         </Link>
 
-        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '2rem', marginBottom: '2rem', color: 'var(--dark)' }}>
+        <h1 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '2rem', marginBottom: '2rem', color: 'var(--dark)' }}>
           Complete Your Booking
         </h1>
 
@@ -255,7 +255,7 @@ function CheckoutContent() {
           <div style={{ background: 'var(--white)', borderRadius: 20, padding: '2rem', boxShadow: '0 4px 24px rgba(0,0,0,0.06)' }}>
             {step === 0 && (
               <div>
-                <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.4rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: 8 }}>
+                <h2 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.4rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: 8 }}>
                   <User size={20} style={{ color: 'var(--primary)' }} /> Primary Contact Details
                 </h2>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
@@ -285,7 +285,7 @@ function CheckoutContent() {
 
                 <div className="divider" style={{ margin: '2rem 0' }} />
 
-                <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.4rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: 8 }}>
+                <h2 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.4rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: 8 }}>
                   <User size={20} style={{ color: 'var(--primary)' }} /> Traveller Details
                 </h2>
 
@@ -371,7 +371,7 @@ function CheckoutContent() {
 
             {step === 1 && (
               <div>
-                <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.4rem', marginBottom: '1.5rem' }}>
+                <h2 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.4rem', marginBottom: '1.5rem' }}>
                   Review Your Booking
                 </h2>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '0.9rem' }}>
@@ -403,7 +403,7 @@ function CheckoutContent() {
 
             {step === 2 && (
               <div>
-                <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.4rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: 8 }}>
+                <h2 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.4rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: 8 }}>
                   <CreditCard size={20} style={{ color: 'var(--primary)' }} /> Secure Payment via UPI
                 </h2>
                 <div style={{ background: 'rgba(204,20,20,0.04)', border: '1px solid rgba(204,20,20,0.15)', borderRadius: 12, padding: '1.25rem', marginBottom: '1.5rem' }}>
@@ -504,11 +504,11 @@ function CheckoutContent() {
           </div>
 
           <div style={{ background: 'var(--white)', borderRadius: 20, padding: '1.5rem', boxShadow: '0 4px 24px rgba(0,0,0,0.06)', border: '1px solid var(--cream-dark)' }}>
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.1rem', marginBottom: '1rem', color: 'var(--dark)' }}>
+            <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.1rem', marginBottom: '1rem', color: 'var(--dark)' }}>
               Order Summary
             </h3>
             <img src={pkg.cover_image_url} alt={pkg.title} style={{ width: '100%', height: 140, objectFit: 'cover', borderRadius: 10, marginBottom: '1rem' }} />
-            <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: '1rem', color: 'var(--dark)', marginBottom: '0.25rem' }}>{pkg.title}</div>
+            <div style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '1rem', color: 'var(--dark)', marginBottom: '0.25rem' }}>{pkg.title}</div>
             <div style={{ fontSize: '0.8rem', color: 'var(--gray)', marginBottom: '1rem' }}>
               {pkg.duration_nights}N/{pkg.duration_days}D · {travelers} traveller{travelers > 1 ? 's' : ''}
             </div>

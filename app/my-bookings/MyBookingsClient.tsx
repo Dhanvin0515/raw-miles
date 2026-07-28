@@ -114,7 +114,7 @@ export default function MyBookingsClient({ bookings }: { bookings: any[] }) {
                 <Ticket size={16} style={{ color: 'var(--primary)' }} />
               </div>
               <h1 style={{
-                fontFamily: "'Playfair Display', serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontSize: 'clamp(1.6rem, 4vw, 2.2rem)',
                 fontWeight: 700, color: 'var(--dark)', margin: 0,
               }}>
@@ -153,7 +153,7 @@ export default function MyBookingsClient({ bookings }: { bookings: any[] }) {
               boxShadow: '0 2px 16px rgba(0,0,0,0.06)',
             }}>
               <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🗺️</div>
-              <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.5rem', color: 'var(--dark)', marginBottom: '0.5rem' }}>
+              <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.5rem', color: 'var(--dark)', marginBottom: '0.5rem' }}>
                 No bookings found
               </h3>
               <p style={{ marginBottom: '1.5rem', color: 'var(--gray)' }}>Time to plan your next adventure!</p>
@@ -215,7 +215,7 @@ export default function MyBookingsClient({ bookings }: { bookings: any[] }) {
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '0.6rem' }}>
                           <div>
                             <h3 style={{
-                              fontFamily: "'Playfair Display', serif",
+                              fontFamily: "'Poppins', sans-serif",
                               fontSize: '1.05rem', fontWeight: 700,
                               color: 'var(--dark)', marginBottom: '0.2rem', lineHeight: 1.25,
                             }}>
@@ -226,7 +226,7 @@ export default function MyBookingsClient({ bookings }: { bookings: any[] }) {
                             </span>
                           </div>
                           <div style={{
-                            fontFamily: "'Playfair Display', serif",
+                            fontFamily: "'Poppins', sans-serif",
                             fontSize: '1.25rem', fontWeight: 700, color: 'var(--primary)',
                             whiteSpace: 'nowrap',
                           }}>

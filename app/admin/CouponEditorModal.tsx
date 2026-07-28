@@ -101,7 +101,7 @@ export default function CouponEditorModal({
       <div style={{ background: 'var(--white)', borderRadius: 20, width: '100%', maxWidth: 500, maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 10px 40px rgba(0,0,0,0.2)' }}>
         
         <div style={{ position: 'sticky', top: 0, background: 'var(--white)', padding: '1.5rem', borderBottom: '1px solid var(--cream-dark)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 10 }}>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.5rem', color: 'var(--dark)' }}>
+          <h2 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.5rem', color: 'var(--dark)' }}>
             {coupon ? 'Edit Coupon' : 'Create Coupon'}
           </h2>
           <button onClick={onClose} style={{ background: 'var(--cream)', border: 'none', width: 36, height: 36, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--gray)' }}>

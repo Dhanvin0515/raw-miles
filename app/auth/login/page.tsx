@@ -64,9 +64,9 @@ function LoginForm() {
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
             <Image src="/logo.png" alt="Raw Miles" width={48} height={48} style={{ borderRadius: '50%' }} />
-            <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: '1.4rem', color: 'var(--primary)' }}>Raw Miles</span>
+            <span style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: '1.4rem', color: 'var(--primary)' }}>Raw Miles</span>
           </div>
-          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.6rem', color: 'var(--dark)', marginBottom: '0.25rem' }}>Welcome back</h1>
+          <h1 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.6rem', color: 'var(--dark)', marginBottom: '0.25rem' }}>Welcome back</h1>
           <p style={{ color: 'var(--gray)', fontSize: '0.875rem' }}>Sign in to manage your trips</p>
         </div>
 

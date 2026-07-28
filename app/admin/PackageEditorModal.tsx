@@ -185,7 +185,7 @@ export default function PackageEditorModal({
         
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1.25rem 1.5rem', borderBottom: '1px solid var(--cream-dark)' }}>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.25rem', color: 'var(--dark)' }}>
+          <h2 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.25rem', color: 'var(--dark)' }}>
             {packageData ? 'Edit Package' : 'Create New Package'}
           </h2>
           <button onClick={onClose} style={{ background: 'none', border: 'none', color: 'var(--gray)', cursor: 'pointer' }}>

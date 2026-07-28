@@ -83,7 +83,7 @@ export default function PackageCard({ pkg }: { pkg: Package }) {
 
 
           <h3 style={{
-            fontFamily: "'Playfair Display', serif",
+            fontFamily: "'Poppins', sans-serif",
             fontSize: '1.1rem',
             fontWeight: 700,
             color: 'var(--dark)',
@@ -110,7 +110,7 @@ export default function PackageCard({ pkg }: { pkg: Package }) {
           <div style={{ borderTop: '1px solid var(--cream-dark)', paddingTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
               <div style={{ fontSize: '0.75rem', color: 'var(--gray)' }}>Starting from</div>
-              <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.4rem', fontWeight: 700, color: 'var(--primary)' }}>
+              <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.4rem', fontWeight: 700, color: 'var(--primary)' }}>
                 ₹{pkg.base_price.toLocaleString('en-IN')}
               </div>
               <div style={{ fontSize: '0.72rem', color: 'var(--gray)' }}>per person</div>

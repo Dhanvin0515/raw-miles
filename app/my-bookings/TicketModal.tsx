@@ -105,7 +105,7 @@ export default function TicketModal({ booking, onClose }: TicketModalProps) {
                   </span>
                 </div>
                 <h2 style={{
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: "'Poppins', sans-serif",
                   fontSize: '1.4rem', fontWeight: 700, color: 'white',
                   lineHeight: 1.2, maxWidth: 280,
                 }} className="ticket-title">
@@ -274,7 +274,7 @@ export default function TicketModal({ booking, onClose }: TicketModalProps) {
                   Total Paid
                 </div>
                 <div style={{
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: "'Poppins', sans-serif",
                   fontSize: '1.5rem', fontWeight: 700, color: '#E50914',
                   lineHeight: 1,
                 }}>

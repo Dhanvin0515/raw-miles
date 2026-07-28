@@ -94,7 +94,7 @@ export default function AadhaarModal({ onConfirm, onClose }: AadhaarModalProps) 
           }}>
             <ShieldCheck size={32} style={{ color: 'var(--primary)' }} />
           </div>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.5rem', marginBottom: '0.5rem', color: 'var(--dark)' }}>
+          <h2 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.5rem', marginBottom: '0.5rem', color: 'var(--dark)' }}>
             Identity Verification
           </h2>
           <p style={{ color: 'var(--gray)', fontSize: '0.875rem', lineHeight: 1.6 }}>

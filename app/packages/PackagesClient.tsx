@@ -54,7 +54,7 @@ export default function PackagesClient({ initialPackages, destinations }: { init
         <div className="badge" style={{ background: 'rgba(204,20,20,0.7)', color: 'white', fontSize: '0.75rem', marginBottom: '1rem', display: 'inline-flex' }}>
           ✦ All Packages
         </div>
-        <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 5vw, 3.5rem)', color: 'white', fontWeight: 700, marginBottom: '0.75rem' }}>
+        <h1 style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(2rem, 5vw, 3.5rem)', color: 'white', fontWeight: 700, marginBottom: '0.75rem' }}>
           Find your perfect escape
         </h1>
         <p style={{ color: 'rgba(255,255,255,0.7)', maxWidth: 480, margin: '0 auto 2rem', lineHeight: 1.7 }}>
@@ -119,7 +119,7 @@ export default function PackagesClient({ initialPackages, destinations }: { init
         ) : (
           <div style={{ textAlign: 'center', padding: '5rem 0', color: 'var(--gray)' }}>
             <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🏔️</div>
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.5rem', color: 'var(--dark)', marginBottom: '0.5rem' }}>No packages found</h3>
+            <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.5rem', color: 'var(--dark)', marginBottom: '0.5rem' }}>No packages found</h3>
             <p>Try adjusting your filters or search terms.</p>
             <button onClick={clearFilters} className="btn-primary" style={{ marginTop: '1.5rem' }}>Clear All Filters</button>
           </div>

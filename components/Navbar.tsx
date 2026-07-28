@@ -61,9 +61,9 @@ export default function Navbar() {
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}>
           <Image src="/logo.png" alt="Raw Miles" width={52} height={52} style={{ borderRadius: '50%' }} />
           <span
-            className="font-playfair"
+            className="font-poppins"
             style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'Poppins', sans-serif",
               fontWeight: 700,
               fontSize: '1.4rem',
               color: 'var(--primary)',

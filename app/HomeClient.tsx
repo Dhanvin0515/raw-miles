@@ -76,7 +76,7 @@ export default function HomeClient({ packages, destinations, heroImages, pastTri
 
 
             <h1 style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "'Poppins', sans-serif",
               fontSize: 'clamp(3rem, 6vw, 5rem)',
               fontWeight: 900,
               color: 'white',
@@ -90,7 +90,7 @@ export default function HomeClient({ packages, destinations, heroImages, pastTri
 
             <div style={{ marginBottom: '2.5rem' }}>
               <div style={{
-                fontFamily: "'Playfair Display', serif",
+                fontFamily: "'Poppins', sans-serif",
                 fontSize: 'clamp(3.5rem, 10vw, 8rem)',
                 fontWeight: 900,
                 color: 'white',
@@ -146,7 +146,7 @@ export default function HomeClient({ packages, destinations, heroImages, pastTri
       <section id="packages" className="section" style={{ background: '#000000', paddingTop: '4rem', paddingBottom: '4rem' }}>
         <div className="container" style={{ position: 'relative', zIndex: 2 }}>
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 4vw, 2.75rem)', fontWeight: 800, color: 'white', marginBottom: '1rem' }}>
+            <h2 style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(2rem, 4vw, 2.75rem)', fontWeight: 800, color: 'white', marginBottom: '1rem' }}>
               {t('home.section.featured')}
             </h2>
             <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '1.1rem', maxWidth: 600, margin: '0 auto' }}>
@@ -172,7 +172,7 @@ export default function HomeClient({ packages, destinations, heroImages, pastTri
         <section id="past-trips" className="section" style={{ background: '#0a0a0a', paddingTop: '4rem', paddingBottom: '4rem' }}>
           <div className="container">
             <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 4vw, 2.75rem)', fontWeight: 800, color: 'var(--dark)', marginBottom: '1rem' }}>
+              <h2 style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(2rem, 4vw, 2.75rem)', fontWeight: 800, color: 'var(--dark)', marginBottom: '1rem' }}>
                 {t('home.section.pastTrips')}
               </h2>
               <p style={{ color: 'var(--gray)', fontSize: '1.1rem', maxWidth: 600, margin: '0 auto' }}>

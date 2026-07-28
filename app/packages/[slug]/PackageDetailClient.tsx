@@ -23,7 +23,7 @@ export default function PackageDetailClient({ pkg }: { pkg: any }) {
   if (!pkg) {
     return (
       <div style={{ textAlign: 'center', padding: '8rem 1.5rem', paddingTop: 100 }}>
-        <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '2rem' }}>Package not found</h2>
+        <h2 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '2rem' }}>Package not found</h2>
         <Link href="/packages"><button className="btn-primary" style={{ marginTop: '1.5rem' }}>← Browse Packages</button></Link>
       </div>
     )
@@ -125,7 +125,7 @@ export default function PackageDetailClient({ pkg }: { pkg: any }) {
                 </div>
               )}
             </div>
-            <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.6rem, 4vw, 2.8rem)', fontWeight: 700, marginBottom: 8, textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
+            <h1 style={{ fontFamily: "'Poppins', sans-serif", fontSize: 'clamp(1.6rem, 4vw, 2.8rem)', fontWeight: 700, marginBottom: 8, textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
               {pkg.title}
             </h1>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: '0.9rem', color: 'rgba(255,255,255,0.85)' }}>
@@ -146,7 +146,7 @@ export default function PackageDetailClient({ pkg }: { pkg: any }) {
           <div>
             {/* Description */}
             <div style={{ marginBottom: '2.5rem' }}>
-              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--dark)' }}>
+              <h2 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.5rem', marginBottom: '1rem', color: 'var(--dark)' }}>
                 About this package
               </h2>
               <p style={{ color: 'var(--gray)', lineHeight: 1.8, whiteSpace: 'pre-line', marginBottom: '1.5rem' }}>{pkg.description}</p>
@@ -170,7 +170,7 @@ export default function PackageDetailClient({ pkg }: { pkg: any }) {
             {/* Inclusions & Exclusions */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2.5rem' }}>
               <div style={{ background: 'rgba(16,185,129,0.05)', border: '1px solid rgba(16,185,129,0.15)', borderRadius: 12, padding: '1.25rem' }}>
-                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1rem', color: '#059669', marginBottom: '0.875rem', display: 'flex', alignItems: 'center', gap: 6 }}>
+                <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1rem', color: '#059669', marginBottom: '0.875rem', display: 'flex', alignItems: 'center', gap: 6 }}>
                   <Check size={16} /> Inclusions
                 </h3>
                 <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -182,7 +182,7 @@ export default function PackageDetailClient({ pkg }: { pkg: any }) {
                 </ul>
               </div>
               <div style={{ background: 'rgba(239,68,68,0.05)', border: '1px solid rgba(239,68,68,0.15)', borderRadius: 12, padding: '1.25rem' }}>
-                <h3 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1rem', color: 'var(--primary)', marginBottom: '0.875rem', display: 'flex', alignItems: 'center', gap: 6 }}>
+                <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1rem', color: 'var(--primary)', marginBottom: '0.875rem', display: 'flex', alignItems: 'center', gap: 6 }}>
                   <X size={16} /> Exclusions
                 </h3>
                 <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -197,7 +197,7 @@ export default function PackageDetailClient({ pkg }: { pkg: any }) {
 
             {/* Itinerary */}
             <div style={{ marginBottom: '2.5rem' }}>
-              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.5rem', marginBottom: '1.25rem', color: 'var(--dark)' }}>
+              <h2 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.5rem', marginBottom: '1.25rem', color: 'var(--dark)' }}>
                 Day-by-Day Itinerary
               </h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
@@ -241,7 +241,7 @@ export default function PackageDetailClient({ pkg }: { pkg: any }) {
 
             {/* Reviews */}
             <div>
-              <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.5rem', marginBottom: '1.25rem', color: 'var(--dark)' }}>
+              <h2 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1.5rem', marginBottom: '1.25rem', color: 'var(--dark)' }}>
                 Traveller Reviews
               </h2>
               {(pkg.reviews || []).length === 0 ? (
@@ -276,7 +276,7 @@ export default function PackageDetailClient({ pkg }: { pkg: any }) {
             <div style={{ background: 'var(--white)', borderRadius: 20, padding: '1.75rem', boxShadow: '0 8px 40px rgba(0,0,0,0.12)', border: '1px solid var(--cream-dark)' }}>
               <div style={{ marginBottom: '1.25rem' }}>
                 <div style={{ fontSize: '0.8rem', color: 'var(--gray)' }}>Starting from</div>
-                <div style={{ fontFamily: "'Playfair Display', serif", fontSize: '2.2rem', fontWeight: 700, color: 'var(--primary)' }}>
+                <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: '2.2rem', fontWeight: 700, color: 'var(--primary)' }}>
                   ₹{pkg.base_price.toLocaleString('en-IN')}
                 </div>
                 <div style={{ fontSize: '0.8rem', color: 'var(--gray)' }}>per person + taxes</div>
