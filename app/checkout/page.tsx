@@ -20,6 +20,7 @@ function CheckoutContent() {
   const [fetchingPkg, setFetchingPkg] = useState(true)
   const [upiQrUrl, setUpiQrUrl] = useState<string>('')
   const [upiId, setUpiId] = useState<string>('')
+  const [submittedBookingId, setSubmittedBookingId] = useState<string>('')
 
   const pkgId = params.get('pkg') || ''
   const slug = params.get('slug') || ''
@@ -129,9 +130,9 @@ function CheckoutContent() {
           num_travelers: travelers,
           coupon_code: coupon || undefined,
           base_amount,
-          lead_traveler_name: travelersData[0].name,
-          contact_email: contactForm.email,
-          contact_phone: contactForm.phone,
+          lead_name: travelersData[0].name,
+          lead_email: contactForm.email,
+          lead_phone: contactForm.phone,
           upi_transaction_id: upiTransactionId,
           travelers_data: travelersData
         })
@@ -140,6 +141,7 @@ function CheckoutContent() {
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Failed to submit payment')
 
+      setSubmittedBookingId(data.booking_id || '')
       setPaymentDone(true)
     } catch (err: any) {
       console.error(err)
@@ -168,21 +170,22 @@ function CheckoutContent() {
               <CheckCircle size={48} style={{ color: 'white' }} />
             </div>
             <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: '2rem', fontWeight: 700, color: 'var(--dark)', marginBottom: '0.75rem' }}>
-              Booking Confirmed! 🎉
+              Booking Submitted! 🎉
             </h1>
             <p style={{ color: 'var(--gray)', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '2rem' }}>
-              Your booking for <strong>{pkg.title}</strong> has been submitted.<br />
-              Our team will verify the UPI transaction and confirm your booking shortly.<br />
-              A confirmation email and WhatsApp message will be sent to <strong>{contactForm.email}</strong> once verified.
+              Your booking for <strong>{pkg.title}</strong> has been submitted for manual verification.<br />
+              Our team will review the UPI transaction ID and either confirm or reject the request.<br />
+              A confirmation email and WhatsApp message will be sent to <strong>{contactForm.email}</strong> after approval.
             </p>
 
             <div style={{ background: 'var(--white)', borderRadius: 16, padding: '1.5rem', marginBottom: '1.5rem', border: '1px solid var(--cream-dark)', textAlign: 'left' }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', fontSize: '0.875rem' }}>
                 {[
+                  ['Booking ID', submittedBookingId || 'Pending'],
                   ['Package', pkg.title],
                   ['Travellers', String(travelers)],
-                  ['Total Paid', `₹${finalTotal.toLocaleString('en-IN')}`],
-                  ['Status', '✅ Confirmed'],
+                  ['Amount', `₹${finalTotal.toLocaleString('en-IN')}`],
+                  ['Status', '⏳ Pending verification'],
                 ].map(([label, value]) => (
                   <div key={label}>
                     <div style={{ color: 'var(--gray)', fontSize: '0.75rem', marginBottom: 2 }}>{label}</div>
@@ -497,7 +500,7 @@ function CheckoutContent() {
               <span>₹{finalTotal.toLocaleString('en-IN')}</span>
             </div>
             <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              {['Booking confirmation included', 'Email + WhatsApp confirmation', 'Instant booking — no wait', 'Free cancellation policy'].map(feature => (
+              {['Manual UPI review', 'Email + WhatsApp confirmation', 'Admin approval required', 'Free cancellation policy'].map(feature => (
                 <div key={feature} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.8rem', color: 'var(--gray)' }}>
                   <CheckCircle size={12} style={{ color: '#059669', flexShrink: 0 }} /> {feature}
                 </div>

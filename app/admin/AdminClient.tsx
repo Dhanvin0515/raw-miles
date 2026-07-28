@@ -69,13 +69,37 @@ export default function AdminClient({
     if (!confirm('Are you sure you want to cancel this booking?')) return
     setLoadingAction(true)
     try {
-      const supabase = createClient()
-      const { error } = await supabase.from('bookings').update({ status: 'cancelled' }).eq('id', id)
-      if (error) throw error
+      const res = await fetch('/api/admin/bookings/cancel', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ booking_id: id, reason: 'Cancelled by admin' })
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Failed to cancel booking')
       alert('Booking cancelled successfully')
       router.refresh()
     } catch (err: any) {
       alert('Failed to cancel booking: ' + err.message)
+    } finally {
+      setLoadingAction(false)
+    }
+  }
+
+  const handleDenyBooking = async (id: string) => {
+    if (!confirm('Reject this payment and cancel the booking?')) return
+    setLoadingAction(true)
+    try {
+      const res = await fetch('/api/admin/bookings/deny', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ booking_id: id, reason: 'Rejected by admin after payment review' })
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Failed to deny booking')
+      alert('Booking rejected successfully')
+      router.refresh()
+    } catch (err: any) {
+      alert('Failed to reject booking: ' + err.message)
     } finally {
       setLoadingAction(false)
     }
@@ -105,13 +129,13 @@ export default function AdminClient({
     if (!confirm('Have you received the UPI payment and verified the transaction?')) return
     setLoadingAction(true)
     try {
-      const supabase = createClient()
-      
-      const { error } = await supabase.from('bookings').update({ status: 'confirmed' }).eq('id', id)
-      if (error) throw error
-      
-      const { error: payError } = await supabase.from('payments').update({ status: 'paid' }).eq('booking_id', id)
-      if (payError) throw payError
+      const res = await fetch('/api/admin/bookings/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ booking_id: id })
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Failed to confirm booking')
       
       alert('Booking confirmed successfully')
       router.refresh()
@@ -237,7 +261,7 @@ export default function AdminClient({
                     {initialBookings.slice(0, 5).map(b => (
                       <tr key={b.id}>
                         <td style={{ fontFamily: 'monospace', fontSize: '0.8rem' }}>{b.id}</td>
-                        <td style={{ fontWeight: 500 }}>{b.profiles?.full_name || 'N/A'}</td>
+                        <td style={{ fontWeight: 500 }}>{b.customer?.full_name || 'N/A'}</td>
                         <td style={{ maxWidth: 180, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{b.packages?.title}</td>
                         <td>{new Date(b.created_at).toLocaleDateString()}</td>
                         <td>{b.num_travelers}</td>
@@ -346,7 +370,7 @@ export default function AdminClient({
                             </div>
                           )}
                         </td>
-                        <td style={{ fontWeight: 500 }}>{b.profiles?.full_name}</td>
+                        <td style={{ fontWeight: 500 }}>{b.customer?.full_name}</td>
                         <td style={{ maxWidth: 180, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontSize: '0.85rem' }}>{b.packages?.title}</td>
                         <td>{new Date(b.created_at).toLocaleDateString()}</td>
                         <td style={{ fontWeight: 700, color: 'var(--dark)' }}>₹{b.total_amount.toLocaleString('en-IN')}</td>
@@ -365,9 +389,9 @@ export default function AdminClient({
                               <Eye size={13} />
                             </button>
                             {b.status === 'confirmed' && (
-                              <button 
-                                onClick={() => handleCancelBooking(b.id)} 
-                                disabled={loadingAction}
+                                <button 
+                              onClick={() => handleCancelBooking(b.id)} 
+                              disabled={loadingAction}
                                 style={{ background: 'rgba(204,20,20,0.1)', border: 'none', borderRadius: 6, padding: '6px', cursor: 'pointer', color: 'var(--primary)', opacity: loadingAction ? 0.5 : 1 }}
                                 title="Cancel Booking"
                               >
@@ -383,14 +407,24 @@ export default function AdminClient({
                               <Trash2 size={13} />
                             </button>
                             {b.status === 'pending_verification' && (
-                              <button 
-                                onClick={() => handleConfirmBooking(b.id)} 
-                                disabled={loadingAction}
-                                style={{ background: 'rgba(50, 205, 50, 0.1)', border: 'none', borderRadius: 6, padding: '6px', cursor: 'pointer', color: 'green', opacity: loadingAction ? 0.5 : 1 }}
-                                title="Verify Payment"
-                              >
-                                <Check size={13} />
-                              </button>
+                              <>
+                                <button 
+                                  onClick={() => handleConfirmBooking(b.id)} 
+                                  disabled={loadingAction}
+                                  style={{ background: 'rgba(50, 205, 50, 0.1)', border: 'none', borderRadius: 6, padding: '6px', cursor: 'pointer', color: 'green', opacity: loadingAction ? 0.5 : 1 }}
+                                  title="Verify Payment"
+                                >
+                                  <Check size={13} />
+                                </button>
+                                <button 
+                                  onClick={() => handleDenyBooking(b.id)} 
+                                  disabled={loadingAction}
+                                  style={{ background: 'rgba(204,20,20,0.12)', border: 'none', borderRadius: 6, padding: '6px', cursor: 'pointer', color: 'var(--primary)', opacity: loadingAction ? 0.5 : 1 }}
+                                  title="Reject Payment"
+                                >
+                                  <XCircle size={13} />
+                                </button>
+                              </>
                             )}
                           </div>
                         </td>

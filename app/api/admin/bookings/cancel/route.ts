@@ -58,12 +58,16 @@ export async function POST(request: NextRequest) {
       refund_status: trigger_refund ? 'pending' : 'not_applicable',
     }).eq('id', booking_id)
 
-    // Decrement slots_booked if booking was confirmed
-    if (booking.status === 'confirmed') {
+    // Decrement slots_booked if the booking reserved inventory already
+    if (booking.status === 'confirmed' || booking.status === 'pending_verification') {
       await supabase.rpc('decrement_slots', {
         p_package_id: booking.package_id,
         p_num_travelers: booking.num_travelers,
       })
+    }
+
+    if (booking.status === 'pending_verification' && !trigger_refund) {
+      await supabase.from('payments').update({ status: 'failed' }).eq('booking_id', booking_id)
     }
 
     // Trigger Razorpay refund if requested

@@ -7,6 +7,7 @@ import { Download, MapPin, Calendar, Users, Clock, CheckCircle, XCircle, Refresh
 
 const STATUS_CONFIG: Record<string, { label: string; color: string; bg: string; icon: typeof CheckCircle }> = {
   confirmed: { label: 'Confirmed', color: '#059669', bg: 'rgba(16,185,129,0.1)', icon: CheckCircle },
+  pending_verification: { label: 'Verification Pending', color: '#2563EB', bg: 'rgba(37,99,235,0.1)', icon: RefreshCw },
   cancelled: { label: 'Cancelled', color: '#DC2626', bg: 'rgba(220,38,38,0.1)', icon: XCircle },
   pending_payment: { label: 'Pending', color: '#D97706', bg: 'rgba(217,119,6,0.1)', icon: RefreshCw },
 }
@@ -15,7 +16,7 @@ export default function MyBookingsClient({ bookings }: { bookings: any[] }) {
   const [activeTab, setActiveTab] = useState<'all' | 'upcoming' | 'past'>('all')
 
   const filtered = bookings.filter(b => {
-    if (activeTab === 'upcoming') return b.status === 'confirmed'
+    if (activeTab === 'upcoming') return b.status === 'confirmed' || b.status === 'pending_verification'
     if (activeTab === 'past') return b.status === 'cancelled'
     return true
   })

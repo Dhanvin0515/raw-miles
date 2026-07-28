@@ -26,10 +26,28 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json()
-    const { package_id, category_id, addon_ids = [], num_travelers, coupon_code, lead_name, lead_email, lead_phone, upi_transaction_id, travelers_data } = body
+    const {
+      package_id,
+      category_id,
+      addon_ids = [],
+      num_travelers,
+      coupon_code,
+      lead_name,
+      lead_email,
+      lead_phone,
+      lead_traveler_name,
+      contact_email,
+      contact_phone,
+      upi_transaction_id,
+      travelers_data,
+    } = body
+
+    const resolvedLeadName = lead_name || lead_traveler_name || ''
+    const resolvedLeadEmail = lead_email || contact_email || ''
+    const resolvedLeadPhone = lead_phone || contact_phone || ''
 
     // Validate inputs
-    if (!package_id || !num_travelers || num_travelers < 1 || !upi_transaction_id) {
+    if (!package_id || !num_travelers || num_travelers < 1 || !upi_transaction_id || !resolvedLeadName || !resolvedLeadEmail || !resolvedLeadPhone) {
       return NextResponse.json({ error: 'Invalid booking parameters' }, { status: 400 })
     }
 
@@ -122,10 +140,10 @@ export async function POST(request: NextRequest) {
         gst_amount: gstAmount,
         total_amount: totalAmount,
         status: 'pending_verification',
-        lead_name,
-        lead_email,
-        lead_phone,
-        travelers: travelers_data || '[]'
+        lead_name: resolvedLeadName,
+        lead_email: resolvedLeadEmail,
+        lead_phone: resolvedLeadPhone,
+        travelers: travelers_data || []
       })
       .select('id')
       .single()

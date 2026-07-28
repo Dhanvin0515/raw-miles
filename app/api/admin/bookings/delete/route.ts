@@ -15,6 +15,24 @@ export async function DELETE(request: NextRequest) {
       process.env.SUPABASE_SERVICE_ROLE_KEY!
     )
 
+    const { data: booking, error: bookingFetchError } = await supabase
+      .from('bookings')
+      .select('id, status, package_id, num_travelers')
+      .eq('id', id)
+      .single()
+
+    if (bookingFetchError) throw bookingFetchError
+    if (!booking) {
+      return NextResponse.json({ error: 'Booking not found' }, { status: 404 })
+    }
+
+    if (booking.status === 'confirmed' || booking.status === 'pending_verification') {
+      await supabase.rpc('decrement_slots', {
+        p_package_id: booking.package_id,
+        p_num_travelers: booking.num_travelers,
+      })
+    }
+
     const { error: paymentsError } = await supabase.from('payments').delete().eq('booking_id', id)
     if (paymentsError) throw paymentsError
 
