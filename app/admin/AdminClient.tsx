@@ -431,14 +431,14 @@ export default function AdminClient({
                       </tr>
                       {expandedBookingId === b.id && b.travelers && b.travelers.length > 0 && (
                         <tr>
-                          <td colSpan={7} style={{ padding: '1rem', background: 'var(--cream)', borderBottom: '1px solid #eaeaea' }}>
-                            <div style={{ marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem' }}>Traveler Details ({b.travelers.length})</div>
+                          <td colSpan={7} style={{ padding: '1rem', background: '#fff8f3', borderBottom: '1px solid #eaeaea' }}>
+                            <div style={{ marginBottom: '0.75rem', fontWeight: 700, fontSize: '0.95rem', color: 'var(--dark)' }}>Traveler Details ({b.travelers.length})</div>
                             <div style={{ display: 'grid', gap: '0.75rem', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
                               {b.travelers.map((t: any, i: number) => (
-                                <div key={i} style={{ background: 'white', padding: '0.75rem', borderRadius: 8, border: '1px solid #eaeaea', fontSize: '0.85rem' }}>
-                                  <div style={{ fontWeight: 600, marginBottom: 4 }}>Traveler {i + 1}: {t.name} (Age {t.age})</div>
-                                  <div style={{ color: 'var(--gray)' }}>Phone: {t.phone}</div>
-                                  {t.medical && <div style={{ color: 'var(--primary)', marginTop: 4 }}>Medical: {t.medical}</div>}
+                                <div key={i} style={{ background: '#ffffff', padding: '0.9rem', borderRadius: 10, border: '1px solid #e5d7ce', fontSize: '0.9rem', color: 'var(--dark)' }}>
+                                  <div style={{ fontWeight: 700, marginBottom: 6, color: 'var(--dark)' }}>Traveler {i + 1}: {t.name} (Age {t.age})</div>
+                                  <div style={{ color: '#4b4b4b' }}>Phone: {t.phone}</div>
+                                  {t.medical && <div style={{ color: '#7a1f1f', marginTop: 6, fontWeight: 600 }}>Medical: {t.medical}</div>}
                                 </div>
                               ))}
                             </div>

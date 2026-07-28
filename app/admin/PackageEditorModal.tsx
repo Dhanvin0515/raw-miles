@@ -47,8 +47,8 @@ export default function PackageEditorModal({
         slug: packageData.slug || '',
         short_description: packageData.short_description || '',
         description: packageData.description || '',
-        duration_days: packageData.duration_days || 1,
-        duration_nights: packageData.duration_nights || 1,
+        duration_days: packageData.duration_days ?? 1,
+        duration_nights: packageData.duration_nights ?? 1,
         base_price: packageData.base_price || 0,
         total_slots: packageData.total_slots || 20,
         status: packageData.status || 'draft',
@@ -232,11 +232,11 @@ export default function PackageEditorModal({
               </div>
               <div>
                 <label className="form-label" style={{ fontSize: '0.8rem' }}>Days</label>
-                <input required type="number" min="1" className="input" value={form.duration_days} onChange={e => setForm({...form, duration_days: Number(e.target.value)})} />
+                <input required type="number" min="0" className="input" value={form.duration_days} onChange={e => setForm({...form, duration_days: Number(e.target.value)})} />
               </div>
               <div>
                 <label className="form-label" style={{ fontSize: '0.8rem' }}>Nights</label>
-                <input required type="number" min="1" className="input" value={form.duration_nights} onChange={e => setForm({...form, duration_nights: Number(e.target.value)})} />
+                <input required type="number" min="0" className="input" value={form.duration_nights} onChange={e => setForm({...form, duration_nights: Number(e.target.value)})} />
               </div>
             </div>
 

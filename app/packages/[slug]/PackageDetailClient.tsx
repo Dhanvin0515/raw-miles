@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import {
   Star, Clock, MapPin, Users, Check, X, ChevronDown, ChevronUp,
-  Plane, Hotel, Tag, ChevronLeft, ChevronRight, Plus, Minus, ArrowRight,
+  Tag, ChevronLeft, ChevronRight, Plus, Minus, ArrowRight,
 } from 'lucide-react'
 
 export default function PackageDetailClient({ pkg }: { pkg: any }) {
@@ -192,24 +192,6 @@ export default function PackageDetailClient({ pkg }: { pkg: any }) {
                     </li>
                   ))}
                 </ul>
-              </div>
-            </div>
-
-            {/* Hotel & Transport */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '2.5rem' }}>
-              <div style={{ background: 'var(--white)', border: '1px solid var(--cream-dark)', borderRadius: 12, padding: '1.25rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '0.5rem' }}>
-                  <Hotel size={18} style={{ color: 'var(--primary)' }} />
-                  <span style={{ fontWeight: 600, fontSize: '0.9rem' }}>Accommodation</span>
-                </div>
-                <p style={{ fontSize: '0.85rem', color: 'var(--gray)', lineHeight: 1.6 }}>{pkg.hotel_info}</p>
-              </div>
-              <div style={{ background: 'var(--white)', border: '1px solid var(--cream-dark)', borderRadius: 12, padding: '1.25rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: '0.5rem' }}>
-                  <Plane size={18} style={{ color: 'var(--primary)' }} />
-                  <span style={{ fontWeight: 600, fontSize: '0.9rem' }}>Transport</span>
-                </div>
-                <p style={{ fontSize: '0.85rem', color: 'var(--gray)', lineHeight: 1.6 }}>{pkg.transport_info}</p>
               </div>
             </div>
 

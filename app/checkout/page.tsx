@@ -499,13 +499,6 @@ function CheckoutContent() {
               <span>Total</span>
               <span>₹{finalTotal.toLocaleString('en-IN')}</span>
             </div>
-            <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              {['Manual UPI review', 'Email + WhatsApp confirmation', 'Admin approval required', 'Free cancellation policy'].map(feature => (
-                <div key={feature} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.8rem', color: 'var(--gray)' }}>
-                  <CheckCircle size={12} style={{ color: '#059669', flexShrink: 0 }} /> {feature}
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </div>
