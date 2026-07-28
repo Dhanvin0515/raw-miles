@@ -73,15 +73,7 @@ export default function HomeClient({ packages, destinations, heroImages, pastTri
             transform: loaded ? 'translateY(0)' : 'translateY(24px)',
             transition: 'all 0.8s ease',
           }}>
-            <div className="badge" style={{
-              background: 'var(--primary)',
-              color: 'white',
-              fontSize: '0.75rem',
-              marginBottom: '1.25rem',
-              display: 'inline-flex',
-            }}>
-              {t('home.badge')}
-            </div>
+
 
             <h1 style={{
               fontFamily: "'Playfair Display', serif",
@@ -96,15 +88,30 @@ export default function HomeClient({ packages, destinations, heroImages, pastTri
               <em style={{ color: 'var(--gray)' }}>{t('home.title2')}</em>
             </h1>
 
-            <p style={{
-              fontSize: '1.1rem',
-              color: 'rgba(255,255,255,0.9)',
-              maxWidth: 500,
-              lineHeight: 1.6,
-              marginBottom: '2.5rem',
-            }}>
-              {t('home.subtitle')}
-            </p>
+            <div style={{ marginBottom: '2.5rem' }}>
+              <div style={{
+                fontFamily: "'Playfair Display', serif",
+                fontSize: 'clamp(3.5rem, 10vw, 8rem)',
+                fontWeight: 900,
+                color: 'white',
+                letterSpacing: '-0.02em',
+                lineHeight: 1,
+                textShadow: '0 4px 32px rgba(0,0,0,0.6)',
+                WebkitTextStroke: '1px rgba(255,255,255,0.15)',
+              }}>
+                RAWMILES
+              </div>
+              <div style={{
+                fontSize: '0.95rem',
+                color: 'rgba(255,255,255,0.55)',
+                fontWeight: 500,
+                letterSpacing: '0.18em',
+                textTransform: 'uppercase',
+                marginTop: '0.5rem',
+              }}>
+                Turning Miles Into Memories
+              </div>
+            </div>
 
             <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
               <button 
