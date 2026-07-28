@@ -430,7 +430,7 @@ export default function PackageDetailClient({ pkg }: { pkg: any }) {
                   <span>Total</span>
                   <span style={{ color: 'var(--primary)' }}>₹{total.toLocaleString('en-IN')}</span>
                 </div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--gray)' }}>+ GST (18%) will be calculated at checkout</div>
+                <div style={{ fontSize: '0.75rem', color: 'var(--gray)' }}>No extra GST applied</div>
               </div>
 
               {/* Book button */}
@@ -448,9 +448,6 @@ export default function PackageDetailClient({ pkg }: { pkg: any }) {
                 </button>
               )}
 
-              <p style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--gray)', marginTop: '0.75rem' }}>
-                🔒 Secure payment via Razorpay · GST invoice included
-              </p>
             </div>
           </div>
         </div>

@@ -104,8 +104,8 @@ export async function POST(request: NextRequest) {
     }
 
     const afterDiscount = subtotal - discountAmount
-    const gstAmount = Math.round(afterDiscount * 0.05)
-    const totalAmount = afterDiscount + gstAmount
+    const gstAmount = 0
+    const totalAmount = afterDiscount
 
     // Create pending_verification booking in Supabase
     const { data: booking, error: bookingErr } = await supabase

@@ -156,8 +156,7 @@ function CheckoutContent() {
     return <div style={{ paddingTop: 120, textAlign: 'center', minHeight: '100vh', background: 'var(--cream)' }}>Package not found.</div>
   }
 
-  const gst = Math.floor(total * 0.05)
-  const finalTotal = total + gst
+  const finalTotal = total
   const bookingId = `RM${Date.now().toString().slice(-8)}` // Optimistic for UI
 
   if (paymentDone) {
@@ -403,10 +402,6 @@ function CheckoutContent() {
                     <span>Package cost {coupon ? '(after discount)' : ''}</span>
                     <span>₹{total.toLocaleString('en-IN')}</span>
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.75rem', fontSize: '0.875rem', color: 'var(--gray)' }}>
-                    <span>GST (5%)</span>
-                    <span>₹{gst.toLocaleString('en-IN')}</span>
-                  </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 700, fontSize: '1.1rem', color: 'var(--dark)', borderTop: '1px solid var(--cream-dark)', paddingTop: '0.75rem' }}>
                     <span>Total Payable</span>
                     <span style={{ color: 'var(--primary)' }}>₹{finalTotal.toLocaleString('en-IN')}</span>
@@ -498,11 +493,11 @@ function CheckoutContent() {
             </div>
             <div className="divider" />
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1rem', fontWeight: 700, color: 'var(--primary)' }}>
-              <span>Total (incl. GST)</span>
+              <span>Total</span>
               <span>₹{finalTotal.toLocaleString('en-IN')}</span>
             </div>
             <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              {['GST invoice on confirmation', 'Email + WhatsApp confirmation', 'Instant booking — no wait', 'Free cancellation policy'].map(feature => (
+              {['Booking confirmation included', 'Email + WhatsApp confirmation', 'Instant booking — no wait', 'Free cancellation policy'].map(feature => (
                 <div key={feature} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.8rem', color: 'var(--gray)' }}>
                   <CheckCircle size={12} style={{ color: '#059669', flexShrink: 0 }} /> {feature}
                 </div>

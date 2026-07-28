@@ -1,4 +1,5 @@
 import { createServerClient } from '@supabase/ssr'
+import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import AdminClient from './AdminClient'
@@ -32,14 +33,19 @@ export default async function AdminPage() {
     redirect('/')
   }
 
-  // Fetch admin data
+  const supabaseAdmin = createSupabaseClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
+
+  // Fetch admin data with service-role access to avoid RLS visibility issues
   const [bookingsRes, packagesRes, couponsRes, statsRes, settingsRes, destinationsRes] = await Promise.all([
-    supabase.from('bookings').select('*, profiles(full_name), packages(title), payments(upi_transaction_id)').order('created_at', { ascending: false }),
-    supabase.from('packages').select('*, itinerary:package_itinerary(*)').order('created_at', { ascending: false }),
-    supabase.from('coupons').select('*').order('created_at', { ascending: false }),
-    supabase.from('bookings').select('total_amount').eq('status', 'confirmed'),
-    supabase.from('site_settings').select('*').eq('id', 1).single(),
-    supabase.from('destinations').select('*').order('name', { ascending: true })
+    supabaseAdmin.from('bookings').select('*, profiles(full_name), packages(title), payments(upi_transaction_id)').order('created_at', { ascending: false }),
+    supabaseAdmin.from('packages').select('*, itinerary:package_itinerary(*)').order('created_at', { ascending: false }),
+    supabaseAdmin.from('coupons').select('*').order('created_at', { ascending: false }),
+    supabaseAdmin.from('bookings').select('total_amount').eq('status', 'confirmed'),
+    supabaseAdmin.from('site_settings').select('*').eq('id', 1).single(),
+    supabaseAdmin.from('destinations').select('*').order('name', { ascending: true })
   ])
 
   const bookings = bookingsRes.data || []

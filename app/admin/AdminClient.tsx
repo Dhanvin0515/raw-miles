@@ -81,6 +81,26 @@ export default function AdminClient({
     }
   }
 
+  const handleDeleteBooking = async (id: string) => {
+    if (!confirm('Delete this booking permanently? This cannot be undone.')) return
+    setLoadingAction(true)
+    try {
+      const res = await fetch('/api/admin/bookings/delete', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id })
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Failed to delete booking')
+      alert('Booking deleted successfully')
+      router.refresh()
+    } catch (err: any) {
+      alert(err.message || 'Failed to delete booking')
+    } finally {
+      setLoadingAction(false)
+    }
+  }
+
   const handleConfirmBooking = async (id: string) => {
     if (!confirm('Have you received the UPI payment and verified the transaction?')) return
     setLoadingAction(true)
@@ -354,6 +374,14 @@ export default function AdminClient({
                                 <XCircle size={13} />
                               </button>
                             )}
+                            <button
+                              onClick={() => handleDeleteBooking(b.id)}
+                              disabled={loadingAction}
+                              style={{ background: 'rgba(229, 9, 20, 0.15)', border: 'none', borderRadius: 6, padding: '6px', cursor: 'pointer', color: 'var(--primary)', opacity: loadingAction ? 0.5 : 1 }}
+                              title="Delete Booking"
+                            >
+                              <Trash2 size={13} />
+                            </button>
                             {b.status === 'pending_verification' && (
                               <button 
                                 onClick={() => handleConfirmBooking(b.id)} 
