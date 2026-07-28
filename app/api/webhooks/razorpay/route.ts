@@ -7,14 +7,21 @@ import crypto from 'crypto'
 
 export const runtime = 'nodejs'
 
-// Service-role client (bypasses RLS for server-side writes)
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-)
+function getSupabaseClient() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+
+  if (!supabaseUrl || !serviceRoleKey) {
+    throw new Error('Missing Supabase environment variables')
+  }
+
+  return createClient(supabaseUrl, serviceRoleKey)
+}
 
 export async function POST(request: NextRequest) {
   try {
+    const supabase = getSupabaseClient()
+
     // Read raw body for HMAC verification (do NOT parse first)
     const rawBody = await request.text()
     const signature = request.headers.get('x-razorpay-signature') || ''
