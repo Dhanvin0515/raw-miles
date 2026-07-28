@@ -31,6 +31,17 @@ export default function TicketModal({ booking, onClose }: TicketModalProps) {
   }))
 
   return (
+    <>
+      <style>{`
+        @media (max-width: 560px) {
+          .ticket-inner { padding: 1rem 1.1rem !important; }
+          .ticket-header { padding: 1.1rem 1.1rem 0.9rem !important; }
+          .ticket-hero { height: 110px !important; }
+          .ticket-stub { padding: 1rem 1.1rem 1.1rem !important; }
+          .ticket-footer { padding: 0.6rem 1.1rem !important; }
+          .ticket-title { font-size: 1.15rem !important; }
+        }
+      `}</style>
     <div
       ref={overlayRef}
       onClick={(e) => { if (e.target === overlayRef.current) onClose() }}
@@ -44,9 +55,11 @@ export default function TicketModal({ booking, onClose }: TicketModalProps) {
         justifyContent: 'center',
         padding: '1rem',
         overflowY: 'auto',
+        alignItems: 'flex-start',
+        paddingTop: '3.5rem',
       }}
     >
-      <div style={{ width: '100%', maxWidth: 520, position: 'relative' }}>
+      <div style={{ width: '100%', maxWidth: 520, position: 'relative', margin: '0 auto 2rem' }}>
         {/* Close button */}
         <button
           onClick={onClose}
@@ -83,7 +96,7 @@ export default function TicketModal({ booking, onClose }: TicketModalProps) {
             padding: '1.5rem 1.75rem 1.25rem',
             background: 'linear-gradient(135deg, rgba(229,9,20,0.15) 0%, transparent 60%)',
             borderBottom: '1px solid rgba(255,255,255,0.08)',
-          }}>
+          }} className="ticket-header">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
@@ -96,7 +109,7 @@ export default function TicketModal({ booking, onClose }: TicketModalProps) {
                   fontFamily: "'Playfair Display', serif",
                   fontSize: '1.4rem', fontWeight: 700, color: 'white',
                   lineHeight: 1.2, maxWidth: 280,
-                }}>
+                }} className="ticket-title">
                   {pkg?.title || 'Your Adventure'}
                 </h2>
               </div>
@@ -111,7 +124,7 @@ export default function TicketModal({ booking, onClose }: TicketModalProps) {
 
           {/* Destination hero */}
           {pkg?.cover_image_url && (
-            <div style={{ position: 'relative', height: 140, overflow: 'hidden' }}>
+            <div style={{ position: 'relative', height: 140, overflow: 'hidden' }} className="ticket-hero">
               <img
                 src={pkg.cover_image_url}
                 alt={pkg.title}
@@ -147,7 +160,7 @@ export default function TicketModal({ booking, onClose }: TicketModalProps) {
           )}
 
           {/* Main ticket info grid */}
-          <div style={{ padding: '1.25rem 1.75rem' }}>
+          <div style={{ padding: '1.25rem 1.75rem' }} className="ticket-inner">
             <div style={{
               display: 'grid', gridTemplateColumns: '1fr 1fr',
               gap: '1rem',
@@ -232,7 +245,7 @@ export default function TicketModal({ booking, onClose }: TicketModalProps) {
           </div>
 
           {/* Bottom section — Stub */}
-          <div style={{ padding: '1.25rem 1.75rem 1.5rem' }}>
+          <div style={{ padding: '1.25rem 1.75rem 1.5rem' }} className="ticket-stub">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}>
 
               {/* Passenger info */}
@@ -248,7 +261,7 @@ export default function TicketModal({ booking, onClose }: TicketModalProps) {
                 </div>
                 <div style={{ marginTop: '0.75rem' }}>
                   <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.65rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 2 }}>
-                    Invoice
+                    Booking Ref
                   </div>
                   <div style={{ fontFamily: 'monospace', color: 'rgba(255,255,255,0.7)', fontSize: '0.75rem', fontWeight: 600 }}>
                     {invoiceNo}
@@ -302,7 +315,7 @@ export default function TicketModal({ booking, onClose }: TicketModalProps) {
             borderTop: '1px solid rgba(229,9,20,0.15)',
             padding: '0.75rem 1.75rem',
             display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-          }}>
+          }} className="ticket-footer">
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <Plane size={13} style={{ color: 'rgba(255,255,255,0.4)' }} />
               <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.7rem' }}>
@@ -321,5 +334,6 @@ export default function TicketModal({ booking, onClose }: TicketModalProps) {
         </p>
       </div>
     </div>
+    </>
   )
 }

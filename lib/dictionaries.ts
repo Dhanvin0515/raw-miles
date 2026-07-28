@@ -7,7 +7,7 @@ export const en = {
   'nav.login': 'Log In',
   'nav.signup': 'Sign Up',
   'nav.profile': 'Profile',
-  'nav.history': 'History',
+  'nav.bookings': 'My Bookings',
   'nav.admin': 'Admin',
   'nav.logout': 'Log Out',
   
@@ -32,7 +32,7 @@ export const kn = {
   'nav.login': 'ಲಾಗಿನ್',
   'nav.signup': 'ಸೈನ್ ಅಪ್',
   'nav.profile': 'ಪ್ರೊಫೈಲ್',
-  'nav.history': 'ಇತಿಹಾಸ',
+  'nav.bookings': 'ನನ್ನ ಬುಕ್ಕಿಂಗ್‌ಗಳು',
   'nav.admin': 'ನಿರ್ವಾಹಕ',
   'nav.logout': 'ಲಾಗ್ ಔಟ್',
 

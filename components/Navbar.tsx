@@ -100,7 +100,7 @@ export default function Navbar() {
                     <Link href="/admin" onClick={() => setDropdownOpen(false)} style={{ display: 'block', padding: '0.75rem 1rem', textDecoration: 'none', color: 'var(--primary)', borderBottom: '1px solid var(--cream-dark)', fontWeight: 700 }}>{t('nav.admin')}</Link>
                   )}
                   <Link href="/profile" onClick={() => setDropdownOpen(false)} style={{ display: 'block', padding: '0.75rem 1rem', textDecoration: 'none', color: 'var(--dark)', borderBottom: '1px solid var(--cream-dark)', fontWeight: 600 }}>{t('nav.profile')}</Link>
-                  <Link href="/history" onClick={() => setDropdownOpen(false)} style={{ display: 'block', padding: '0.75rem 1rem', textDecoration: 'none', color: 'var(--dark)', borderBottom: '1px solid var(--cream-dark)', fontWeight: 600 }}>{t('nav.history')}</Link>
+                  <Link href="/my-bookings" onClick={() => setDropdownOpen(false)} style={{ display: 'block', padding: '0.75rem 1rem', textDecoration: 'none', color: 'var(--dark)', borderBottom: '1px solid var(--cream-dark)', fontWeight: 600 }}>{t('nav.bookings')}</Link>
                   <button onClick={handleLogout} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '0.75rem 1rem', border: 'none', background: 'none', color: 'var(--primary)', cursor: 'pointer', fontWeight: 600 }}>{t('nav.logout')}</button>
                 </div>
               )}
@@ -196,8 +196,8 @@ export default function Navbar() {
               <Link href="/profile" onClick={() => setOpen(false)} style={{ textDecoration: 'none' }}>
                 <button className="btn-outline" style={{ width: '100%', justifyContent: 'center' }}>{t('nav.profile')}</button>
               </Link>
-              <Link href="/history" onClick={() => setOpen(false)} style={{ textDecoration: 'none' }}>
-                <button className="btn-outline" style={{ width: '100%', justifyContent: 'center' }}>{t('nav.history')}</button>
+              <Link href="/my-bookings" onClick={() => setOpen(false)} style={{ textDecoration: 'none' }}>
+                <button className="btn-outline" style={{ width: '100%', justifyContent: 'center' }}>{t('nav.bookings')}</button>
               </Link>
               <button onClick={() => { handleLogout(); setOpen(false); }} className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>{t('nav.logout')}</button>
             </div>
