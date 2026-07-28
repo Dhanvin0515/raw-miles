@@ -1,0 +1,68 @@
+import { createServerClient } from '@supabase/ssr'
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
+import AdminClient from './AdminClient'
+
+export const dynamic = 'force-dynamic'
+
+export default async function AdminPage() {
+  const cookieStore = await cookies()
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() { return cookieStore.getAll() },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) => cookieStore.set(name, value, options))
+        },
+      },
+    }
+  )
+
+  const { data: { user } } = await supabase.auth.getUser()
+
+  if (!user) {
+    redirect('/auth/login?redirect=/admin')
+  }
+
+  const { data: profile } = await supabase.from('profiles').select('role').eq('id', user.id).single()
+  
+  if (!profile || profile.role !== 'admin') {
+    redirect('/')
+  }
+
+  // Fetch admin data
+  const [bookingsRes, packagesRes, couponsRes, statsRes, settingsRes, destinationsRes] = await Promise.all([
+    supabase.from('bookings').select('*, profiles(full_name), packages(title), payments(upi_transaction_id)').order('created_at', { ascending: false }),
+    supabase.from('packages').select('*, itinerary:package_itinerary(*)').order('created_at', { ascending: false }),
+    supabase.from('coupons').select('*').order('created_at', { ascending: false }),
+    supabase.from('bookings').select('total_amount').eq('status', 'confirmed'),
+    supabase.from('site_settings').select('*').eq('id', 1).single(),
+    supabase.from('destinations').select('*').order('name', { ascending: true })
+  ])
+
+  const bookings = bookingsRes.data || []
+  const packages = packagesRes.data || []
+  const coupons = couponsRes.data || []
+  const settings = settingsRes.data || { hero_images: [] }
+  const destinations = destinationsRes.data || []
+  
+  const totalRevenue = (statsRes.data || []).reduce((sum, b) => sum + Number(b.total_amount), 0)
+  
+  const stats = [
+    { label: 'Total Revenue', value: `₹${totalRevenue.toLocaleString('en-IN')}` },
+    { label: 'Total Bookings', value: bookings.length.toString() },
+    { label: 'Total Packages', value: packages.length.toString() },
+    { label: 'Active Coupons', value: coupons.filter(c => c.active).length.toString() }
+  ]
+
+  return <AdminClient 
+    initialStats={stats} 
+    initialPackages={packages} 
+    initialBookings={bookings} 
+    initialCoupons={coupons}
+    initialSettings={settings}
+    initialDestinations={destinations}
+  />
+}
