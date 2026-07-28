@@ -65,9 +65,9 @@ export default function HomeClient({ packages, destinations, heroImages, pastTri
           }} />
 
           {/* Content */}
-          <div style={{
+          <div className="p-6 md:p-16" style={{
             position: 'relative', zIndex: 2,
-            textAlign: 'left', padding: '4rem',
+            textAlign: 'left',
             maxWidth: 800,
             opacity: loaded ? 1 : 0,
             transform: loaded ? 'translateY(0)' : 'translateY(24px)',
@@ -77,7 +77,7 @@ export default function HomeClient({ packages, destinations, heroImages, pastTri
 
             <h1 style={{
               fontFamily: "'Poppins', sans-serif",
-              fontSize: 'clamp(3rem, 6vw, 5rem)',
+              fontSize: 'clamp(2.5rem, 6vw, 5rem)',
               fontWeight: 900,
               color: 'white',
               lineHeight: 1.1,
@@ -91,7 +91,7 @@ export default function HomeClient({ packages, destinations, heroImages, pastTri
             <div style={{ marginBottom: '2.5rem' }}>
               <div style={{
                 fontFamily: "'Poppins', sans-serif",
-                fontSize: 'clamp(3.5rem, 10vw, 8rem)',
+                fontSize: 'clamp(2.5rem, 10vw, 8rem)',
                 fontWeight: 900,
                 color: 'white',
                 letterSpacing: '-0.02em',
@@ -127,8 +127,8 @@ export default function HomeClient({ packages, destinations, heroImages, pastTri
           </div>
 
           {/* Hero dots */}
-          <div style={{
-            position: 'absolute', bottom: 32, right: 48,
+          <div className="bottom-4 right-6 md:bottom-8 md:right-12" style={{
+            position: 'absolute',
             zIndex: 2, display: 'flex', gap: 8,
           }}>
             {heroImages.map((_, i) => (

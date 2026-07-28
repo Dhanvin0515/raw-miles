@@ -70,10 +70,9 @@ function SignupForm() {
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       padding: '1.5rem',
     }}>
-      <div style={{
+      <div className="p-6 md:p-10" style={{
         width: '100%', maxWidth: 440,
         background: '#000000', borderRadius: 24,
-        padding: '2.5rem',
         boxShadow: '0 32px 80px rgba(0,0,0,0.35)',
         animation: 'fadeInUp 0.4s ease',
       }}>

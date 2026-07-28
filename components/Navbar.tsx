@@ -175,9 +175,12 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu */}
       {open && (
         <div style={{
+          position: 'absolute',
+          top: '72px',
+          left: 0,
+          right: 0,
           background: 'var(--cream)',
           borderTop: '1px solid var(--cream-dark)',
           padding: '1rem',

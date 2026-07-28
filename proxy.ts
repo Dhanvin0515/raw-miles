@@ -29,7 +29,7 @@ export async function proxy(request: NextRequest) {
   if ((pathname.startsWith('/my-bookings') || pathname.startsWith('/checkout')) && !user) {
     const url = request.nextUrl.clone()
     url.pathname = '/auth/login'
-    url.searchParams.set('redirect', pathname)
+    url.searchParams.set('redirect', pathname + request.nextUrl.search)
     return NextResponse.redirect(url)
   }
 

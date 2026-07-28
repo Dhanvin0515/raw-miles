@@ -251,7 +251,7 @@ function CheckoutContent() {
           ))}
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr min(360px, 100%)', gap: '2rem', alignItems: 'start' }}>
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_min(360px,100%)] gap-8 items-start">
           <div style={{ background: 'var(--white)', borderRadius: 20, padding: '2rem', boxShadow: '0 4px 24px rgba(0,0,0,0.06)' }}>
             {step === 0 && (
               <div>

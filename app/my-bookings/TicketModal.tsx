@@ -322,7 +322,7 @@ export default function TicketModal({ booking, onClose }: TicketModalProps) {
               </span>
             </div>
             <div style={{ color: 'rgba(255,255,255,0.25)', fontSize: '0.65rem', fontFamily: 'monospace', whiteSpace: 'nowrap' }}>
-              rawmiles.in
+              Raw Miles
             </div>
           </div>
         </div>

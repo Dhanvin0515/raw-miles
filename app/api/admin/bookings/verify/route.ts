@@ -125,7 +125,7 @@ async function sendConfirmationEmail(booking: {
   const resend = new Resend(process.env.RESEND_API_KEY)
   const pkg = booking.packages
 
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://rawmiles.in'
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
 
   const { data: emailData, error: emailError } = await resend.emails.send({
     from: process.env.EMAIL_FROM || 'onboarding@resend.dev',
@@ -195,7 +195,7 @@ async function sendConfirmationEmail(booking: {
         <!-- CTA -->
         <div style="text-align: center; margin-bottom: 28px;">
           <a href="${appUrl}/my-bookings" style="display: inline-block; background: #E50914; color: white; text-decoration: none; padding: 14px 32px; border-radius: 8px; font-weight: 700; font-size: 14px; letter-spacing: 0.5px;">View My E-Tickets →</a>
-          <p style="color: #666; font-size: 12px; margin-top: 12px;">Log in to rawmiles.in to view and save your e-pass</p>
+          <p style="color: #666; font-size: 12px; margin-top: 12px;">Log in to view and save your e-pass</p>
         </div>
 
         <div style="background: #1a1400; border: 1px solid #fde68a; border-radius: 8px; padding: 16px; margin-bottom: 24px;">
@@ -203,7 +203,7 @@ async function sendConfirmationEmail(booking: {
         </div>
 
         <div style="text-align: center; padding-top: 24px; border-top: 1px solid #1f1f1f; color: #555; font-size: 12px;">
-          <p style="margin: 0;">Raw Miles | hello@rawmiles.in</p>
+          <p style="margin: 0;">Raw Miles</p>
         </div>
       </div>
     `,

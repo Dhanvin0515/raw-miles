@@ -141,7 +141,7 @@ export default function PackageDetailClient({ pkg }: { pkg: any }) {
 
       {/* Main Content */}
       <div className="container" style={{ paddingTop: '2.5rem', paddingBottom: '4rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr min(380px, 100%)', gap: '2.5rem', alignItems: 'start' }}>
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_min(380px,100%)] gap-10 items-start">
           {/* Left column */}
           <div>
             {/* Description */}
@@ -168,7 +168,7 @@ export default function PackageDetailClient({ pkg }: { pkg: any }) {
             </div>
 
             {/* Inclusions & Exclusions */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '2.5rem' }}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
               <div style={{ background: 'rgba(16,185,129,0.05)', border: '1px solid rgba(16,185,129,0.15)', borderRadius: 12, padding: '1.25rem' }}>
                 <h3 style={{ fontFamily: "'Poppins', sans-serif", fontSize: '1rem', color: '#059669', marginBottom: '0.875rem', display: 'flex', alignItems: 'center', gap: 6 }}>
                   <Check size={16} /> Inclusions

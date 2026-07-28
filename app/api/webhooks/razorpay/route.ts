@@ -199,7 +199,7 @@ async function sendConfirmationEmail(booking: {
         </div>
 
         <div style="text-align: center; margin-top: 32px; padding-top: 24px; border-top: 1px solid #eee; color: #999; font-size: 12px;">
-          <p>Raw Miles | hello@rawmiles.in | +91 98765 43210</p>
+          <p>Raw Miles | +91 98765 43210</p>
         </div>
       </div>
     `,
