@@ -13,8 +13,8 @@ export const en = {
   
   // Home
   'home.badge': 'CURATED EXPERIENCES',
-  'home.title1': 'Travel further.',
-  'home.title2': 'Feel more.',
+  'home.title1': 'Live Raw.',
+  'home.title2': 'Miles Ahead.',
   'home.subtitle': 'Raw Miles brings you hand-crafted itineraries designed to immerse you deeply in the destination.',
   'home.exploreBtn': 'Explore Packages',
   'home.section.featured': 'Featured Destinations',
@@ -38,8 +38,8 @@ export const kn = {
 
   // Home
   'home.badge': 'ಕ್ಯುರೇಟೆಡ್ ಅನುಭವಗಳು',
-  'home.title1': 'ಇನ್ನಷ್ಟು ದೂರ ಪ್ರಯಾಣಿಸಿ.',
-  'home.title2': 'ಹೆಚ್ಚು ಅನುಭವಿಸಿ.',
+  'home.title1': 'ಲೈವ್ ರಾ.',
+  'home.title2': 'ಮೈಲ್ಸ್ ಅಹೆಡ್.',
   'home.subtitle': 'ರಾ ಮೈಲ್ಸ್ ನಿಮ್ಮನ್ನು ಗಮ್ಯಸ್ಥಾನದಲ್ಲಿ ಆಳವಾಗಿ ಮುಳುಗಿಸಲು ವಿನ್ಯಾಸಗೊಳಿಸಲಾದ ಕರಕುಶಲ ಪ್ರವಾಸಗಳನ್ನು ತರುತ್ತದೆ.',
   'home.exploreBtn': 'ಪ್ಯಾಕೇಜುಗಳನ್ನು ಅನ್ವೇಷಿಸಿ',
   'home.section.featured': 'ವೈಶಿಷ್ಟ್ಯಗೊಳಿಸಿದ ಗಮ್ಯಸ್ಥಾನಗಳು',
