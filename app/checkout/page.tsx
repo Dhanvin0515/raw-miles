@@ -15,6 +15,7 @@ function CheckoutContent() {
   const [step, setStep] = useState(0)
   const [loading, setLoading] = useState(false)
   const [paymentDone, setPaymentDone] = useState(false)
+  const [termsAccepted, setTermsAccepted] = useState(false)
   
   const [pkg, setPkg] = useState<any>(null)
   const [fetchingPkg, setFetchingPkg] = useState(true)
@@ -116,6 +117,11 @@ function CheckoutContent() {
   }
 
   const handlePayment = async () => {
+    if (!termsAccepted) {
+      alert('Please accept the Terms and Conditions before continuing')
+      return
+    }
+
     if (!upiTransactionId.trim() || upiTransactionId.length < 8) {
       alert('Please enter a valid 12-digit Transaction ID (UTR)')
       return
@@ -451,11 +457,23 @@ function CheckoutContent() {
                   </p>
                 </div>
 
+                <label style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', marginBottom: '1.25rem', fontSize: '0.85rem', color: 'var(--dark)', lineHeight: 1.5 }}>
+                  <input
+                    type="checkbox"
+                    checked={termsAccepted}
+                    onChange={(e) => setTermsAccepted(e.target.checked)}
+                    style={{ marginTop: 4, accentColor: 'var(--primary)' }}
+                  />
+                  <span>
+                    I agree to the <Link href="/terms" style={{ color: 'var(--primary)', fontWeight: 600, textDecoration: 'underline' }}>Terms and Conditions</Link> before making this payment.
+                  </span>
+                </label>
+
                 <button
                   onClick={handlePayment}
-                  disabled={loading || upiTransactionId.length < 8}
+                  disabled={loading || upiTransactionId.length < 8 || !termsAccepted}
                   className="btn-primary"
-                  style={{ width: '100%', justifyContent: 'center', padding: '1rem', fontSize: '1rem', borderRadius: 10, opacity: (loading || upiTransactionId.length < 8) ? 0.7 : 1 }}
+                  style={{ width: '100%', justifyContent: 'center', padding: '1rem', fontSize: '1rem', borderRadius: 10, opacity: (loading || upiTransactionId.length < 8 || !termsAccepted) ? 0.7 : 1 }}
                 >
                   {loading ? (
                     <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -498,6 +516,13 @@ function CheckoutContent() {
             <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '1rem', fontWeight: 700, color: 'var(--primary)' }}>
               <span>Total</span>
               <span>₹{finalTotal.toLocaleString('en-IN')}</span>
+            </div>
+            <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              {['Manual UPI review', 'Email confirmation', 'Admin approval required'].map(feature => (
+                <div key={feature} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.8rem', color: 'var(--gray)' }}>
+                  <CheckCircle size={12} style={{ color: '#059669', flexShrink: 0 }} /> {feature}
+                </div>
+              ))}
             </div>
           </div>
         </div>
