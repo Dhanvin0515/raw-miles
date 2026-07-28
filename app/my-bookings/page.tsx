@@ -31,7 +31,7 @@ export default async function MyBookingsPage() {
     .select(`
       *,
       packages(*, destinations(name, country)),
-      invoices(invoice_url)
+      invoices(invoice_number, pdf_url)
     `)
     .eq('user_id', user.id)
     .order('created_at', { ascending: false })

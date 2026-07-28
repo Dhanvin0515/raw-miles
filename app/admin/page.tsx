@@ -40,7 +40,7 @@ export default async function AdminPage() {
 
   // Fetch admin data with service-role access to avoid RLS visibility issues
   const [bookingsRes, packagesRes, couponsRes, statsRes, settingsRes, destinationsRes] = await Promise.all([
-    supabaseAdmin.from('bookings').select('*, customer:profiles!bookings_user_id_fkey(full_name), packages(title), payments(upi_transaction_id, status)').order('created_at', { ascending: false }),
+    supabaseAdmin.from('bookings').select('*, customer:profiles!bookings_user_id_fkey(full_name), packages(title), payments(upi_transaction_id, status), invoices(invoice_number, pdf_url)').order('created_at', { ascending: false }),
     supabaseAdmin.from('packages').select('*, itinerary:package_itinerary(*)').order('created_at', { ascending: false }),
     supabaseAdmin.from('coupons').select('*').order('created_at', { ascending: false }),
     supabaseAdmin.from('bookings').select('total_amount').eq('status', 'confirmed'),

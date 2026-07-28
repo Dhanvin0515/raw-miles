@@ -432,6 +432,18 @@ export default function AdminClient({
                       {expandedBookingId === b.id && b.travelers && b.travelers.length > 0 && (
                         <tr>
                           <td colSpan={7} style={{ padding: '1rem', background: '#fff8f3', borderBottom: '1px solid #eaeaea' }}>
+                            {b.invoices && b.invoices[0] && (
+                              <div style={{ marginBottom: '1rem', display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center' }}>
+                                <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--dark)' }}>Invoice #{b.invoices[0].invoice_number}</div>
+                                {b.invoices[0].pdf_url ? (
+                                  <a href={b.invoices[0].pdf_url} target="_blank" rel="noreferrer" style={{ color: 'var(--primary)', fontWeight: 600, textDecoration: 'none' }}>
+                                    Open invoice
+                                  </a>
+                                ) : (
+                                  <span style={{ color: 'var(--gray)', fontSize: '0.85rem' }}>Invoice PDF not generated yet</span>
+                                )}
+                              </div>
+                            )}
                             <div style={{ marginBottom: '0.75rem', fontWeight: 700, fontSize: '0.95rem', color: 'var(--dark)' }}>Traveler Details ({b.travelers.length})</div>
                             <div style={{ display: 'grid', gap: '0.75rem', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
                               {b.travelers.map((t: any, i: number) => (

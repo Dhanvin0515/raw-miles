@@ -130,7 +130,7 @@ export default function MyBookingsClient({ bookings }: { bookings: any[] }) {
                     borderLeft: '1px solid var(--cream-dark)',
                   }}>
                     {booking.invoices && booking.invoices[0] && (
-                      <a href={booking.invoices[0].invoice_url} download style={{ textDecoration: 'none' }} target="_blank" rel="noreferrer">
+                      <a href={booking.invoices[0].pdf_url || '#'} download style={{ textDecoration: 'none', pointerEvents: booking.invoices[0].pdf_url ? 'auto' : 'none' }} target="_blank" rel="noreferrer">
                         <button style={{
                           width: '100%', padding: '0.625rem 1rem',
                           background: 'var(--cream)', border: '1.5px solid var(--cream-darker)',
@@ -140,6 +140,11 @@ export default function MyBookingsClient({ bookings }: { bookings: any[] }) {
                           <Download size={14} /> Download Invoice
                         </button>
                       </a>
+                    )}
+                    {booking.invoices && booking.invoices[0] && !booking.invoices[0].pdf_url && (
+                      <div style={{ fontSize: '0.75rem', color: 'var(--gray)', textAlign: 'center' }}>
+                        Invoice #{booking.invoices[0].invoice_number}
+                      </div>
                     )}
                     {booking.status === 'confirmed' && (
                       <Link href={`/packages/${booking.packages?.slug}`} style={{ textDecoration: 'none' }}>
