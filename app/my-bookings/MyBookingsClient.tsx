@@ -1,8 +1,9 @@
-// app/my-bookings/page.tsx — Customer Bookings Dashboard
+// app/my-bookings/MyBookingsClient.tsx — Customer Bookings Dashboard
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
-import { Download, MapPin, Calendar, Users, Clock, CheckCircle, XCircle, RefreshCw } from 'lucide-react'
+import { Ticket, MapPin, Calendar, Users, Clock, CheckCircle, XCircle, RefreshCw } from 'lucide-react'
+import TicketModal from './TicketModal'
 
 
 const STATUS_CONFIG: Record<string, { label: string; color: string; bg: string; icon: typeof CheckCircle }> = {
@@ -14,6 +15,7 @@ const STATUS_CONFIG: Record<string, { label: string; color: string; bg: string; 
 
 export default function MyBookingsClient({ bookings }: { bookings: any[] }) {
   const [activeTab, setActiveTab] = useState<'all' | 'upcoming' | 'past'>('all')
+  const [ticketBooking, setTicketBooking] = useState<any | null>(null)
 
   const filtered = bookings.filter(b => {
     if (activeTab === 'upcoming') return b.status === 'confirmed' || b.status === 'pending_verification'
@@ -129,22 +131,29 @@ export default function MyBookingsClient({ bookings }: { bookings: any[] }) {
                     padding: '1.25rem', justifyContent: 'center', minWidth: 160,
                     borderLeft: '1px solid var(--cream-dark)',
                   }}>
-                    {booking.invoices && booking.invoices[0] && (
-                      <a href={booking.invoices[0].pdf_url || '#'} download style={{ textDecoration: 'none', pointerEvents: booking.invoices[0].pdf_url ? 'auto' : 'none' }} target="_blank" rel="noreferrer">
-                        <button style={{
+                    {/* View Tickets — only for confirmed bookings */}
+                    {booking.status === 'confirmed' && (
+                      <button
+                        onClick={() => setTicketBooking(booking)}
+                        style={{
                           width: '100%', padding: '0.625rem 1rem',
-                          background: 'var(--cream)', border: '1.5px solid var(--cream-darker)',
+                          background: 'linear-gradient(135deg, rgba(229,9,20,0.15), rgba(229,9,20,0.05))',
+                          border: '1.5px solid rgba(229,9,20,0.35)',
                           borderRadius: 8, cursor: 'pointer', display: 'flex', alignItems: 'center',
-                          justifyContent: 'center', gap: 6, fontSize: '0.8rem', fontWeight: 600, color: 'var(--dark-2)',
-                        }}>
-                          <Download size={14} /> Download Invoice
-                        </button>
-                      </a>
-                    )}
-                    {booking.invoices && booking.invoices[0] && !booking.invoices[0].pdf_url && (
-                      <div style={{ fontSize: '0.75rem', color: 'var(--gray)', textAlign: 'center' }}>
-                        Invoice #{booking.invoices[0].invoice_number}
-                      </div>
+                          justifyContent: 'center', gap: 6, fontSize: '0.8rem', fontWeight: 700,
+                          color: 'var(--primary)', transition: 'all 0.2s',
+                        }}
+                        onMouseEnter={e => {
+                          (e.currentTarget as HTMLButtonElement).style.background = 'linear-gradient(135deg, rgba(229,9,20,0.25), rgba(229,9,20,0.1))'
+                          ;(e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-1px)'
+                        }}
+                        onMouseLeave={e => {
+                          (e.currentTarget as HTMLButtonElement).style.background = 'linear-gradient(135deg, rgba(229,9,20,0.15), rgba(229,9,20,0.05))'
+                          ;(e.currentTarget as HTMLButtonElement).style.transform = 'translateY(0)'
+                        }}
+                      >
+                        <Ticket size={14} /> View Tickets
+                      </button>
                     )}
                     {booking.status === 'confirmed' && (
                       <Link href={`/packages/${booking.packages?.slug}`} style={{ textDecoration: 'none' }}>
@@ -162,6 +171,12 @@ export default function MyBookingsClient({ bookings }: { bookings: any[] }) {
                         Contact support to cancel
                       </div>
                     )}
+                    {/* Pending badge */}
+                    {booking.status === 'pending_verification' && (
+                      <div style={{ fontSize: '0.75rem', color: '#2563EB', textAlign: 'center', fontWeight: 600, padding: '0.5rem', background: 'rgba(37,99,235,0.08)', borderRadius: 8, border: '1px solid rgba(37,99,235,0.2)' }}>
+                        ⏳ Awaiting admin confirmation
+                      </div>
+                    )}
                   </div>
                 </div>
               )
@@ -169,6 +184,14 @@ export default function MyBookingsClient({ bookings }: { bookings: any[] }) {
           </div>
         )}
       </div>
+
+      {/* Ticket Modal */}
+      {ticketBooking && (
+        <TicketModal
+          booking={ticketBooking}
+          onClose={() => setTicketBooking(null)}
+        />
+      )}
     </div>
   )
 }
