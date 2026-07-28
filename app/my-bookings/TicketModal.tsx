@@ -51,7 +51,6 @@ export default function TicketModal({ booking, onClose }: TicketModalProps) {
         backdropFilter: 'blur(8px)',
         zIndex: 1000,
         display: 'flex',
-        alignItems: 'center',
         justifyContent: 'center',
         padding: '1rem',
         overflowY: 'auto',
