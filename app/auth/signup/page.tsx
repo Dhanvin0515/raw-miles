@@ -57,7 +57,7 @@ function SignupForm() {
           <p style={{ color: 'var(--gray)', lineHeight: 1.7, marginBottom: '1.5rem' }}>
             Your account is ready for login. Use <strong>{form.email}</strong> to sign in and start booking.
           </p>
-          <Link href="/auth/login"><button className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>Go to Login</button></Link>
+          <Link href={`/auth/login?redirect=${encodeURIComponent(redirect)}`}><button className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>Go to Login</button></Link>
         </div>
       </div>
     )
