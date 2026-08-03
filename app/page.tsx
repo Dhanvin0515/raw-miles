@@ -1,8 +1,8 @@
 import { createClient } from '@supabase/supabase-js'
 import HomeClient from './HomeClient'
 
-// Revalidate every hour
-export const revalidate = 3600
+// Revalidate immediately to show fresh data
+export const revalidate = 0
 
 export default async function HomePage() {
   const supabase = createClient(

@@ -1,8 +1,8 @@
 import { createClient } from '@supabase/supabase-js'
 import PackagesClient from './PackagesClient'
 
-// Revalidate every hour since packages don't change by the second
-export const revalidate = 3600
+// Revalidate immediately to show fresh data
+export const revalidate = 0
 
 export default async function PackagesPage() {
   const supabase = createClient(
