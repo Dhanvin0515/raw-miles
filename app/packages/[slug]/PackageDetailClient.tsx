@@ -37,7 +37,7 @@ export default function PackageDetailClient({ pkg }: { pkg: any }) {
   const subtotal = (pkg.base_price + categoryPrice + addonTotal) * travelers
   const discount = couponApplied ? Math.floor(subtotal * 0.1) : 0
   const total = subtotal - discount
-  const slotsLeft = pkg.total_slots - pkg.slots_booked
+  const slotsLeft = Math.max(0, pkg.total_slots - pkg.slots_booked)
   const galleryImages = pkg.gallery_image_urls?.length ? pkg.gallery_image_urls : [pkg.cover_image_url || 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80']
 
   const applyCoupon = () => {
@@ -122,6 +122,11 @@ export default function PackageDetailClient({ pkg }: { pkg: any }) {
               {slotsLeft <= 3 && slotsLeft > 0 && (
                 <div className="badge" style={{ background: 'rgba(239,68,68,0.85)', color: 'white', fontSize: '0.72rem' }}>
                   🔥 Only {slotsLeft} slots left!
+                </div>
+              )}
+              {slotsLeft === 0 && (
+                <div className="badge" style={{ background: 'rgba(107,114,128,0.9)', color: 'white', fontSize: '0.72rem' }}>
+                  Sold Out
                 </div>
               )}
             </div>
@@ -416,7 +421,7 @@ export default function PackageDetailClient({ pkg }: { pkg: any }) {
               </div>
 
               {/* Book button */}
-              {slotsLeft === 0 ? (
+              {slotsLeft <= 0 ? (
                 <button disabled style={{ width: '100%', padding: '1rem', background: 'var(--gray)', color: 'white', border: 'none', borderRadius: 10, fontWeight: 600, cursor: 'not-allowed' }}>
                   Sold Out
                 </button>
