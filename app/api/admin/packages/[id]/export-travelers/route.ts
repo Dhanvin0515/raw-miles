@@ -5,7 +5,7 @@ import { cookies } from 'next/headers'
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { id } = await params
@@ -42,9 +42,9 @@ export async function GET(
     // Get confirmed and completed bookings
     const { data: bookings } = await supabase
       .from('bookings')
-      .select('*, customer:profiles(*)')
+      .select('*, customer:profiles!bookings_user_id_fkey(full_name, phone)')
       .eq('package_id', id)
-      .in('status', ['confirmed', 'completed'])
+      .in('status', ['confirmed', 'completed', 'pending_verification'])
       .order('created_at', { ascending: true })
 
     const rows = [

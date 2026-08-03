@@ -57,9 +57,8 @@ export async function POST(request: NextRequest) {
     }
 
     const isBookingCompleted = booking.status === 'completed'
-    const isPackageCompleted = booking.packages && Array.isArray(booking.packages) 
-      ? booking.packages[0]?.status === 'completed' 
-      : booking.packages?.status === 'completed'
+    const pkg = booking.packages as any
+    const isPackageCompleted = pkg && (Array.isArray(pkg) ? pkg[0]?.status === 'completed' : pkg.status === 'completed')
 
     if (!isBookingCompleted && !isPackageCompleted) {
       return NextResponse.json({ error: 'You can only review packages after the trip is successfully completed' }, { status: 409 })
