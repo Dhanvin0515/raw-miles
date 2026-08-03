@@ -13,6 +13,7 @@ import PackageEditorModal from './PackageEditorModal'
 import CouponEditorModal from './CouponEditorModal'
 import ImageUploader from '@/components/ImageUploader'
 import { createClient } from '@/lib/supabase/client'
+import { Download } from 'lucide-react'
 
 const NAV_ITEMS = [
   { icon: LayoutDashboard, label: 'Dashboard', key: 'dashboard' },
@@ -63,6 +64,10 @@ export default function AdminClient({
     } catch (err: any) {
       alert('Failed to delete package: ' + err.message)
     }
+  }
+
+  const handleExportTravelers = (pkgId: string) => {
+    window.location.href = `/api/admin/packages/${pkgId}/export-travelers`
   }
 
   const handleCancelBooking = async (id: string) => {
@@ -345,6 +350,13 @@ export default function AdminClient({
                             title="Edit"
                           >
                             <Edit size={14} />
+                          </button>
+                          <button 
+                            onClick={() => handleExportTravelers(pkg.id)}
+                            style={{ background: 'rgba(34, 197, 94, 0.1)', border: 'none', padding: '0.4rem', borderRadius: 6, color: '#16a34a', cursor: 'pointer' }}
+                            title="Download Travelers CSV"
+                          >
+                            <Download size={14} />
                           </button>
                           <button 
                             onClick={() => handleDeletePackage(pkg.id)}
