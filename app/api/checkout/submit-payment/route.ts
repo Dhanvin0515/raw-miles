@@ -161,12 +161,7 @@ export async function POST(request: NextRequest) {
       status: 'created', // Admin will change to 'paid' when verified
     })
 
-    // Increment slots_booked
-    await supabase
-      .from('packages')
-      .update({ slots_booked: pkg.slots_booked + num_travelers })
-      .eq('id', package_id)
-
+    // Slots will be booked when the admin verifies the payment.
     // If coupon was used, increment usage
     if (couponId) {
       // In a real app this should be a stored procedure to handle concurrency properly

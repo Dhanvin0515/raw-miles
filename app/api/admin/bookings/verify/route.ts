@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
 
     const { data: booking } = await supabase
       .from('bookings')
-      .select('id, status')
+      .select('id, status, package_id, num_travelers')
       .eq('id', booking_id)
       .single()
 
@@ -57,6 +57,22 @@ export async function POST(request: NextRequest) {
       .eq('id', booking_id)
 
     if (bookingError) throw bookingError
+
+    // Increment slots_booked now that admin approved
+    if (booking.package_id && booking.num_travelers) {
+      const { data: pkg } = await supabase
+        .from('packages')
+        .select('slots_booked, total_slots')
+        .eq('id', booking.package_id)
+        .single()
+      
+      if (pkg) {
+        await supabase
+          .from('packages')
+          .update({ slots_booked: pkg.slots_booked + booking.num_travelers })
+          .eq('id', booking.package_id)
+      }
+    }
 
     const { error: paymentError } = await supabase
       .from('payments')

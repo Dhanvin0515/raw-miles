@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
     }).eq('id', booking_id)
 
     // Decrement slots_booked if the booking reserved inventory already
-    if (booking.status === 'confirmed' || booking.status === 'pending_verification') {
+    if (booking.status === 'confirmed') {
       await supabase.rpc('decrement_slots', {
         p_package_id: booking.package_id,
         p_num_travelers: booking.num_travelers,
