@@ -14,7 +14,7 @@ export default async function HomePage() {
     supabase
       .from('packages')
       .select('*, destinations(name)')
-      .eq('status', 'published')
+      .in('status', ['published', 'completed'])
       .order('created_at', { ascending: false })
       .limit(6), // Featured packages limit
     supabase

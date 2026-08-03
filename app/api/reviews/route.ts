@@ -44,7 +44,7 @@ export async function POST(request: NextRequest) {
     // Verify booking belongs to user and is completed
     const { data: booking } = await supabase
       .from('bookings')
-      .select('id, user_id, status')
+      .select('id, user_id, status, packages(id, status)')
       .eq('id', booking_id)
       .single()
 
@@ -56,7 +56,12 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
-    if (booking.status !== 'completed') {
+    const isBookingCompleted = booking.status === 'completed'
+    const isPackageCompleted = booking.packages && Array.isArray(booking.packages) 
+      ? booking.packages[0]?.status === 'completed' 
+      : booking.packages?.status === 'completed'
+
+    if (!isBookingCompleted && !isPackageCompleted) {
       return NextResponse.json({ error: 'You can only review packages after the trip is successfully completed' }, { status: 409 })
     }
 

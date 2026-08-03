@@ -301,7 +301,7 @@ export default function MyBookingsClient({ bookings }: { bookings: any[] }) {
                             </div>
                           </>
                         )}
-                        {booking.status === 'completed' && (
+                        {(booking.status === 'completed' || booking.packages?.status === 'completed') && (
                           <>
                             <button
                               className="view-ticket-btn"

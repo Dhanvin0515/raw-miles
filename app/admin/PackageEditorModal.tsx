@@ -220,6 +220,7 @@ export default function PackageEditorModal({
                 <select required className="input" value={form.status} onChange={e => setForm({...form, status: e.target.value})}>
                   <option value="draft">Draft</option>
                   <option value="published">Published</option>
+                  <option value="completed">Successfully Completed</option>
                   <option value="archived">Archived</option>
                 </select>
               </div>
@@ -243,7 +244,7 @@ export default function PackageEditorModal({
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
               <div>
                 <label className="form-label" style={{ fontSize: '0.8rem' }}>Total Seats</label>
-                <input required type="number" min="1" className="input" value={form.total_slots} onChange={e => setForm({...form, total_slots: Number(e.target.value)})} />
+                <input required type="number" min="0" className="input" value={form.total_slots} onChange={e => setForm({...form, total_slots: Number(e.target.value)})} />
               </div>
               <div>
                 <label className="form-label" style={{ fontSize: '0.8rem' }}>Pickup Map Link</label>

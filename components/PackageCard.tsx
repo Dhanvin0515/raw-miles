@@ -13,16 +13,19 @@ interface Package {
   base_price: number
   cover_image_url: string
   avg_rating: number
+  review_count: number
   total_slots: number
   slots_booked: number
+  status: string
   destination: { name: string; country: string }
   start_date: string
 }
 
 export default function PackageCard({ pkg }: { pkg: Package }) {
   const slotsLeft = pkg.total_slots - pkg.slots_booked
-  const isAlmostFull = slotsLeft <= 3 && slotsLeft > 0
-  const isFull = slotsLeft <= 0
+  const isAlmostFull = slotsLeft <= 3 && slotsLeft > 0 && pkg.status !== 'completed'
+  const isFull = slotsLeft <= 0 && pkg.status !== 'completed'
+  const isCompleted = pkg.status === 'completed'
 
   return (
     <Link href={`/packages/${pkg.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
@@ -63,6 +66,11 @@ export default function PackageCard({ pkg }: { pkg: Package }) {
                 Sold Out
               </div>
             )}
+            {isCompleted && (
+              <div className="badge" style={{ background: 'rgba(139,92,246,0.9)', color: 'white', fontSize: '0.7rem' }}>
+                Completed
+              </div>
+            )}
           </div>
           {/* Rating badge */}
           <div style={{
@@ -74,7 +82,7 @@ export default function PackageCard({ pkg }: { pkg: Package }) {
             display: 'flex', alignItems: 'center', gap: 4,
             color: '#F59E0B', fontSize: '0.8rem', fontWeight: 600,
           }}>
-            <Star size={12} fill="#F59E0B" /> {pkg.avg_rating}
+            <Star size={12} fill="#F59E0B" /> {pkg.avg_rating} {pkg.review_count > 0 && <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.7rem', marginLeft: 2 }}>({pkg.review_count})</span>}
           </div>
         </div>
 
