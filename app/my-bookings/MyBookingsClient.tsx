@@ -4,9 +4,12 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Ticket, MapPin, Calendar, Users, Clock, CheckCircle, XCircle, RefreshCw, ChevronRight, Sparkles } from 'lucide-react'
 import TicketModal from './TicketModal'
+import ReviewModal from './ReviewModal'
+import { Star } from 'lucide-react'
 
 const STATUS_CONFIG: Record<string, { label: string; color: string; bg: string; border: string; icon: typeof CheckCircle }> = {
   confirmed:            { label: 'Confirmed',           color: '#059669', bg: 'rgba(16,185,129,0.12)',  border: 'rgba(16,185,129,0.3)',  icon: CheckCircle },
+  completed:            { label: 'Successfully Completed', color: '#8B5CF6', bg: 'rgba(139,92,246,0.12)', border: 'rgba(139,92,246,0.3)', icon: Sparkles },
   pending_verification: { label: 'Pending Verification', color: '#2563EB', bg: 'rgba(37,99,235,0.1)',   border: 'rgba(37,99,235,0.25)',  icon: RefreshCw   },
   cancelled:            { label: 'Cancelled',            color: '#DC2626', bg: 'rgba(220,38,38,0.1)',   border: 'rgba(220,38,38,0.25)',  icon: XCircle     },
   pending_payment:      { label: 'Pending Payment',      color: '#D97706', bg: 'rgba(217,119,6,0.1)',   border: 'rgba(217,119,6,0.25)',  icon: RefreshCw   },
@@ -21,10 +24,11 @@ const TABS = [
 export default function MyBookingsClient({ bookings }: { bookings: any[] }) {
   const [activeTab, setActiveTab] = useState<'all' | 'upcoming' | 'past'>('all')
   const [ticketBooking, setTicketBooking] = useState<any | null>(null)
+  const [reviewBooking, setReviewBooking] = useState<any | null>(null)
 
   const filtered = bookings.filter(b => {
     if (activeTab === 'upcoming') return b.status === 'confirmed' || b.status === 'pending_verification'
-    if (activeTab === 'past')     return b.status === 'cancelled'
+    if (activeTab === 'past')     return b.status === 'cancelled' || b.status === 'completed'
     return true
   })
 
@@ -297,6 +301,22 @@ export default function MyBookingsClient({ bookings }: { bookings: any[] }) {
                             </div>
                           </>
                         )}
+                        {booking.status === 'completed' && (
+                          <>
+                            <button
+                              className="view-ticket-btn"
+                              style={{ background: 'linear-gradient(135deg, #8B5CF6, #6D28D9)', boxShadow: '0 3px 10px rgba(139,92,246,0.25)' }}
+                              onClick={() => setReviewBooking(booking)}
+                            >
+                              <Star size={14} /> Write a Review
+                            </button>
+                            <Link href={`/packages/${booking.packages?.slug}`} style={{ textDecoration: 'none' }}>
+                              <button className="view-pkg-btn">
+                                View Package <ChevronRight size={13} />
+                              </button>
+                            </Link>
+                          </>
+                        )}
                         {booking.status === 'cancelled' && (
                           <Link href="/packages" style={{ textDecoration: 'none' }}>
                             <button className="view-pkg-btn" style={{ gap: 5 }}>
@@ -319,6 +339,14 @@ export default function MyBookingsClient({ bookings }: { bookings: any[] }) {
         <TicketModal
           booking={ticketBooking}
           onClose={() => setTicketBooking(null)}
+        />
+      )}
+
+      {/* Review Modal */}
+      {reviewBooking && (
+        <ReviewModal
+          booking={reviewBooking}
+          onClose={() => setReviewBooking(null)}
         />
       )}
     </>

@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 import {
   LayoutDashboard, Package, BookOpen, Tag, Star, FileText,
   BarChart2, LogOut, Menu, X, TrendingUp, Users, IndianRupee,
-  CalendarCheck, Eye, Edit, Trash2, Plus, Check, XCircle, Settings,
+  CalendarCheck, Eye, Edit, Trash2, Plus, Check, XCircle, Settings, CheckCircle2
 } from 'lucide-react'
 import PackageEditorModal from './PackageEditorModal'
 import CouponEditorModal from './CouponEditorModal'
@@ -146,6 +146,27 @@ export default function AdminClient({
     }
   }
 
+  const handleCompleteBooking = async (id: string) => {
+    if (!confirm('Mark this booking as successfully completed?')) return
+    setLoadingAction(true)
+    try {
+      const res = await fetch('/api/admin/bookings/complete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ booking_id: id })
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Failed to mark as completed')
+      
+      alert('Booking marked as completed successfully')
+      router.refresh()
+    } catch (err: any) {
+      alert('Failed to mark as completed: ' + err.message)
+    } finally {
+      setLoadingAction(false)
+    }
+  }
+
   const handleSaveSettings = async () => {
     setLoadingAction(true)
     try {
@@ -266,7 +287,7 @@ export default function AdminClient({
                         <td>{new Date(b.created_at).toLocaleDateString()}</td>
                         <td>{b.num_travelers}</td>
                         <td style={{ fontWeight: 700, color: 'var(--dark)' }}>₹{b.total_amount.toLocaleString('en-IN')}</td>
-                        <td><span className={`badge badge-${b.status === 'confirmed' ? 'green' : b.status === 'cancelled' ? 'red' : 'gray'}`}>{b.status}</span></td>
+                        <td><span className={`badge badge-${b.status === 'completed' ? 'green' : b.status === 'confirmed' ? 'green' : b.status === 'cancelled' ? 'red' : 'gray'}`}>{b.status}</span></td>
                       </tr>
                     ))}
                   </tbody>
@@ -375,7 +396,7 @@ export default function AdminClient({
                         <td>{new Date(b.created_at).toLocaleDateString()}</td>
                         <td style={{ fontWeight: 700, color: 'var(--dark)' }}>₹{b.total_amount.toLocaleString('en-IN')}</td>
                         <td>
-                          <span className={`badge badge-${b.status === 'confirmed' ? 'green' : b.status === 'pending_verification' ? 'primary' : b.status === 'cancelled' ? 'red' : 'gray'}`}>
+                          <span className={`badge badge-${b.status === 'completed' ? 'green' : b.status === 'confirmed' ? 'green' : b.status === 'pending_verification' ? 'primary' : b.status === 'cancelled' ? 'red' : 'gray'}`}>
                             {b.status === 'pending_verification' ? 'Pending' : b.status}
                           </span>
                         </td>
@@ -389,14 +410,24 @@ export default function AdminClient({
                               <Eye size={13} />
                             </button>
                             {b.status === 'confirmed' && (
+                              <>
                                 <button 
-                              onClick={() => handleCancelBooking(b.id)} 
-                              disabled={loadingAction}
-                                style={{ background: 'rgba(204,20,20,0.1)', border: 'none', borderRadius: 6, padding: '6px', cursor: 'pointer', color: 'var(--primary)', opacity: loadingAction ? 0.5 : 1 }}
-                                title="Cancel Booking"
-                              >
-                                <XCircle size={13} />
-                              </button>
+                                  onClick={() => handleCompleteBooking(b.id)} 
+                                  disabled={loadingAction}
+                                  style={{ background: 'rgba(34, 197, 94, 0.15)', border: 'none', borderRadius: 6, padding: '6px', cursor: 'pointer', color: '#16a34a', opacity: loadingAction ? 0.5 : 1 }}
+                                  title="Mark Completed"
+                                >
+                                  <CheckCircle2 size={13} />
+                                </button>
+                                <button 
+                                  onClick={() => handleCancelBooking(b.id)} 
+                                  disabled={loadingAction}
+                                  style={{ background: 'rgba(204,20,20,0.1)', border: 'none', borderRadius: 6, padding: '6px', cursor: 'pointer', color: 'var(--primary)', opacity: loadingAction ? 0.5 : 1 }}
+                                  title="Cancel Booking"
+                                >
+                                  <XCircle size={13} />
+                                </button>
+                              </>
                             )}
                             <button
                               onClick={() => handleDeleteBooking(b.id)}
